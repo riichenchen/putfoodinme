@@ -15,11 +15,12 @@ try{
     $stmt->bindValue(2, "Person");
     $stmt->bindValue(3, 10);
     $stmt->bindValue(4, 10);
+    $stmt->execute();
 }
 catch(Exception $e){
     die(print_r($e));
 }
-echo "still works";
+echo "still works"
 ?>
 </body>
 </html>
