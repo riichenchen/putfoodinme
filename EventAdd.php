@@ -10,6 +10,12 @@ try{
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     $sql_insert = "INSERT INTO foodinfo (name, description, LocationX, LocationY) 
                    VALUES (?,?,?,?)";
+    $stmt = $conn->prepare($sql_insert);
+    $stmt->bindValue(1, "Person");
+    $stmt->bindValue(2, "Person");
+    $stmt->bindValue(3, 10);
+    $stmt->bindValue(4, 10);
+}
 catch(Exception $e){
     die(print_r($e));
 }
