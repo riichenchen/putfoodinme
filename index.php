@@ -64,7 +64,7 @@
                     myInfowindow.open(map, marker);
                 }
             })(myMarker));
-
+            alert("About to do something stupid");
             google.maps.event.addListener(map, 'click', function (event) {
                 //window.location.href = "http://localhost/EventAddForm.php?lat=" +event.latLng.lat()+ "&long=" + event.latLng.lng();
                 addMarkerToMap(event.latLng.lat(), event.latLng.lng());
