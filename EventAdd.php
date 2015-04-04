@@ -16,11 +16,32 @@ try{
     $stmt->bindValue(3, 10);
     $stmt->bindValue(4, 10);
     $stmt->execute();
+    $sql_select = "SELECT * FROM foodinfo";
+	$stmt = $conn->query($sql_select);
+	$foods = $stmt->fetchAll(); 
+	if(count($foods) > 0) {
+	    echo "<h2>Events:</h2>";
+	    echo "<table>";
+	    echo "<tr><th>Name</th>";
+	    echo "<th>Description</th>";
+	    echo "<th>Latitude</th>";
+	    echo "<th>Longitude</th></tr>";
+	    foreach($foods as $food) {
+	        echo "<tr><td>".$food['name']."</td>";
+	        echo "<td>".$food['description']."</td>";
+	        echo "<td>".$food['LocationX']."</td>";
+	        echo "<td>".$food['LocationY']."</td></tr>";
+	    }
+	    echo "</table>";
+	} else {
+	    echo "<h3>No food :(</h3>";
+	}
+
 }
 catch(Exception $e){
     die(print_r($e));
 }
-echo "still works"
+echo "still works";
 ?>
 </body>
 </html>
