@@ -7,20 +7,20 @@ $description = $_POST["description"];
 <html>
 <body>
 <?php
-$servername = "ex84mmt50m.database.windows.net";
-$username = "putfoodinme";
-$password = "PutF00dInMe";
-$db = "food";
-
-//connection to the database
-$dbhandle = mssql_connect($servername, $username, $password)
-  or die("Couldn't connect to SQL Server on $myServer");
-
-//select a database to work with
-$selected = mssql_select_db($db, $dbhandle)
-  or die("Couldn't open database $myDB"); 
-
-echo "Get some food";
+$host = "tcp:ex84mmt50m.database.windows.net,1433";
+$user = "putfoodinme@ex84mmt50m";
+$pwd = "PutF00dInMe";
+$db = "userinfo";
+try{
+    $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
+    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+    $sql = "";
+    //$conn->query($sql);
+    echo "stuff";
+}
+catch(Exception $e){
+    die(print_r($e));
+}
 
 
 // $sql = "INSERT INTO foodinfo (name, description, LocationX, LocationY) VALUES ('$name', '$description', '$long', '$lat')";
