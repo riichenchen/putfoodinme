@@ -6,7 +6,7 @@ $lat = $_COOKIE["lat"];
 ?>
 <html>
 <body>
-<?
+<?php
 
 //$servername = "localhost";
 $host = "tcp:ex84mmt50m.database.windows.net,1433";
