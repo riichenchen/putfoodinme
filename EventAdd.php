@@ -9,7 +9,7 @@ $lat = $_COOKIE["lat"];
 <?php
 $servername = "us-cdbr-azure-southcentral-e.cloudapp.net";
 $username = "b950be0f214ace";
-$password = "be1d807d";
+$password = "be1d807d ";
 $db = "food";
 
 // Create connection
