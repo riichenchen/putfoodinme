@@ -146,5 +146,6 @@
   </head>
   <body>
   <div id="map-canvas">Stuff</div>
+  <?php echo "stuff"; ?>
   </body>
 </html>

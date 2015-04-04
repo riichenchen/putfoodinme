@@ -1,8 +1,8 @@
 <?php
 $name = $_POST["name"];
 $description = $_POST["description"];
-$long = $_COOKIE["long"];
-$lat = $_COOKIE["lat"];
+// $long = $_COOKIE["long"];
+// $lat = $_COOKIE["lat"];
 ?>
 <html>
 <body>
@@ -20,14 +20,17 @@ $dbhandle = mssql_connect($servername, $username, $password)
 $selected = mssql_select_db($db, $dbhandle)
   or die("Couldn't open database $myDB"); 
 
-$sql = "INSERT INTO foodinfo (name, description, LocationX, LocationY) VALUES ('$name', '$description', '$long', '$lat')";
-if (mssql_query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error";
-}
-//close the connection
-mssql_close($dbhandle);
+echo "Get some food";
+
+
+// $sql = "INSERT INTO foodinfo (name, description, LocationX, LocationY) VALUES ('$name', '$description', '$long', '$lat')";
+// if (mssql_query($sql) === TRUE) {
+//     echo "New record created successfully";
+// } else {
+//     echo "Error";
+// }
+// //close the connection
+// mssql_close($dbhandle);
 ?>
 </body>
 </html>
