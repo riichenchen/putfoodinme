@@ -17,7 +17,7 @@ $db = "food";
 // Create connection
 //$conn = new mysqli($servername, $username, $password, $db);
 try {
-    $conn = new PDO ( "sqlsrv:server = $host; Database = $db", $username, $password);
+    $conn = new PDO ( "sqlsrv:server = tcp:ex84mmt50m.database.windows.net,1433; Database = food", $username, $password);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 }
 catch ( PDOException $e ) {
