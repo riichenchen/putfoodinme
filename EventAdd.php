@@ -1,8 +1,8 @@
 <?php
 $name = $_POST["name"];
 $description = $_POST["description"];
-// $long = $_COOKIE["long"];
-// $lat = $_COOKIE["lat"];
+ $long = 7//$_COOKIE["long"];
+ $lat = 7//$_COOKIE["lat"];
 ?>
 <html>
 <body>
@@ -14,9 +14,36 @@ $db = "food";
 try{
     $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    $sql = "";
+    $sql = " VALUES ('$name', '$description', '$long', '$lat')";
     //$conn->query($sql);
-    echo "stuff";
+    $sql_insert = "INSERT INTO foodinfo (name, description, LocationX, LocationY) 
+                   VALUES (?,?,?,?)";
+    $stmt = $conn->prepare($sql_insert);
+    $stmt->bindValue(1, $name);
+    $stmt->bindValue(2, $description);
+    $stmt->bindValue(3, $long);
+    $stmt->bindValue(4, $lat);
+    $stmt->execute();
+    $sql_select = "SELECT * FROM foodinfo";
+	$stmt = $conn->query($sql_select);
+	$foods = $stmt->fetchAll(); 
+	if(count($foods) > 0) {
+	    echo "<h2>Events:</h2>";
+	    echo "<table>";
+	    echo "<tr><th>Name</th>";
+	    echo "<th>Description</th>";
+	    echo "<th>Latitude</th>";
+	    echo "<th>Longitude</th></tr>";
+	    foreach($foods as $food) {
+	        echo "<tr><td>".$food['name']."</td>";
+	        echo "<td>".$food['description']."</td>";
+	        echo "<td>".$food['LocationX']."</td>";
+	        echo "<td>".$food['LocationY']."</td></tr>";
+	    }
+	    echo "</table>";
+	} else {
+	    echo "<h3>No food :(</h3>";
+	}
 }
 catch(Exception $e){
     die(print_r($e));
