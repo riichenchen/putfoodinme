@@ -7,6 +7,8 @@
     <script type="text/javascript"
       src="http://maps.google.com/maps/api/js?sensor=false">
     </script>
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">google.load("jquery", "1.3.2");</script>
     <script type="text/javascript">
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see a blank space instead of the map, this
@@ -93,24 +95,24 @@
             var infowindow = new google.maps.InfoWindow(options);
             map.setCenter(options.position);
         }
-        function getFoodLocations(location, radius) {
-            //Get Events
-            var infowindow = new google.maps.InfoWindow();
-            var myLatLng = new google.maps.LatLng(myLat, myLong);
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                animation: google.maps.Animation.DROP
-            });
-            var infowindow = new google.maps.InfoWindow();
-            google.maps.event.addListener(marker, 'click', (function () {
-                return function () {
-                    infowindow.setContent(htmlMarkupForInfoWindow);
-                    infowindow.open(map, marker);
-                    //Pans map to the new location of the marker
-                    map.panTo(myLatLng);
-                }
-            })(marker, foodCount));
+        function getFoodLocations(latitude, longitude) {
+            var spherical = google.maps.geometry.spherical, 
+            bounds = map.getBounds(), 
+            cor1 = bounds.getNorthEast(), 
+            cor2 = bounds.getSouthWest(), 
+            cor3 = new google.maps.LatLng(cor2.lat(), cor1.lng()), 
+            cor4 = new google.maps.LatLng(cor1.lat(), cor2.lng()), 
+            width = spherical.computeDistanceBetween(cor1,cor3), 
+            height = spherical.computeDistanceBetween( cor1, cor4);
+            $.post( "getEvents.php", 
+                {lat: latitude, long: longitude, height: height, width: width
+                }).done(function(data){
+                    var events = jQuery.parseJSON(data);
+                    jQuery.each(events, function() {
+                      addMarkerToMap(this.lat, this.long, this.name, this.description);
+                    });
+                    var infowindow = new google.maps.InfoWindow();
+                });
         }
 
 
@@ -118,7 +120,7 @@
         //is called.  It takes latitude, longitude, and html markup
         //for the content you want to appear in the info window
         //for the marker.
-        function addMarkerToMap(lat, long) {
+        function addMarkerToMap(lat, long, name, description) {
             var infowindow = new google.maps.InfoWindow();
             var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
@@ -132,7 +134,7 @@
             //and places the marker on the map
             google.maps.event.addListener(marker, 'click', (function (marker) {
                 return function () {
-                    infowindow.setContent("<p> WE ARE HUNGRYYY " + marker.id + "</p>");
+                    infowindow.setContent("<h1>name</h1><br><p>"+description+"</p>");
                     infowindow.open(map, marker);
                 }
             })(marker));
