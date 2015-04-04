@@ -1,4 +1,11 @@
+<html>
+<body>
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$db = "food";
+
 $fname = $_POST["fname"];
 $lname = $_POST["lname"];
 $user = $_POST["user"];
@@ -16,22 +23,24 @@ $db = "food";
 if($pass != $cpass){
 	die("Error: Passwords don't match");
 }
-// Create connection
-$conn = new mysqli($servername, $username, $password, $db);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+
+//connection to the database
+$dbhandle = mssql_connect($servername, $username, $password)
+  or die("Couldn't connect to SQL Server on $myServer"); 
+
+//select a database to work with
+$selected = mssql_select_db($db, $dbhandle)
+  or die("Couldn't open database $myDB"); 
 
 $sql = "INSERT INTO userdata (fName, lName, Login, Password) VALUES ('$fname', '$lname', '$user', '$pass')";
-if ($conn->query($sql) === TRUE) {
+if (mssql_query($sql) === TRUE) {
     echo "New record created successfully";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error";
 }
-
-$conn->close();
+//close the connection
+mssql_close($dbhandle);
 
 ?>
 <a href="localhost/login.php">Click here to go to the login page</a>

@@ -8,22 +8,7 @@
 		$lat = floatval($_POST['lat']);
 		$coslat = cos($lat);
 		echo "[";
-		for($i = 0; i < 10; i++){
-			echo "{";
-			echo "lat:";
-			echo mt_rand (-($long - $maxDeltaLong)*cos($lat), ($long - $maxDeltaLong)*cos($lat));
-			echo ", ";
-			echo "long: ";
-			echo mt_rand (-($long - $maxDeltaLong)*cos($lat), ($long - $maxDeltaLong)*cos($lat));
-			echo ", ";
-			echo "description: ";
-			echo "'We're Hungry!!!'";
-			echo ", ";
-			echo "name: ";
-			echo "'Random'";
-			echo "}, ";
-		}
-		echo "10";
+		echo "10]";
 // 	$servername = "localhost";
 // 	$username = "username";
 // 	$password = "password";

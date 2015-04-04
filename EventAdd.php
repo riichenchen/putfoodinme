@@ -7,28 +7,27 @@ $lat = $_COOKIE["lat"];
 <html>
 <body>
 <?php
-$servername = "us-cdbr-azure-southcentral-e.cloudapp.net";
-$username = "b950be0f214ace";
-$password = "be1d807d";
+$servername = "ex84mmt50m.database.windows.net";
+$username = "putfoodinme";
+$password = "PutF00dInMe";
 $db = "food";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $db);
+//connection to the database
+$dbhandle = mssql_connect($servername, $username, $password)
+  or die("Couldn't connect to SQL Server on $myServer");
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
+//select a database to work with
+$selected = mssql_select_db($db, $dbhandle)
+  or die("Couldn't open database $myDB"); 
 
 $sql = "INSERT INTO foodinfo (name, description, LocationX, LocationY) VALUES ('$name', '$description', '$long', '$lat')";
-if ($conn->query($sql) === TRUE) {
+if (mssql_query($sql) === TRUE) {
     echo "New record created successfully";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error";
 }
-
-$conn->close();
-
+//close the connection
+mssql_close($dbhandle);
 ?>
 </body>
 </html>
