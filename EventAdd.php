@@ -14,16 +14,15 @@ $db = "food";
 try{
     $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    $sql = " VALUES ('$name', '$description', '$long', '$lat')";
-    //$conn->query($sql);
-    $sql_insert = "INSERT INTO foodinfo (name, description, LocationX, LocationY) 
-                   VALUES (?,?,?,?)";
-    $stmt = $conn->prepare($sql_insert);
-    $stmt->bindValue(1, $name);
-    $stmt->bindValue(2, $description);
-    $stmt->bindValue(3, $long);
-    $stmt->bindValue(4, $lat);
-    $stmt->execute();
+    // $sql_insert = "INSERT INTO foodinfo (name, description, LocationX, LocationY) 
+    //                VALUES (?,?,?,?)";
+    // $stmt = $conn->prepare($sql_insert);
+    // $stmt->bindValue(1, $name);
+    // $stmt->bindValue(2, $description);
+    // $stmt->bindValue(3, $long);
+    // $stmt->bindValue(4, $lat);
+    // $stmt->execute();\
+    echo "still works";
     $sql_select = "SELECT * FROM foodinfo";
 	$stmt = $conn->query($sql_select);
 	$foods = $stmt->fetchAll(); 
