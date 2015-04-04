@@ -1,9 +1,3 @@
-<?php
-$name = $_POST["name"];
-$description = $_POST["description"];
- $long = 7//$_COOKIE["long"];
- $lat = 7//$_COOKIE["lat"];
-?>
 <html>
 <body>
 <?php
@@ -15,21 +9,10 @@ try{
     $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     echo "still works";
-   
 }
 catch(Exception $e){
     die(print_r($e));
 }
-
-
-// $sql = "INSERT INTO foodinfo (name, description, LocationX, LocationY) VALUES ('$name', '$description', '$long', '$lat')";
-// if (mssql_query($sql) === TRUE) {
-//     echo "New record created successfully";
-// } else {
-//     echo "Error";
-// }
-// //close the connection
-// mssql_close($dbhandle);
 ?>
 </body>
 </html>
