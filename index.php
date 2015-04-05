@@ -143,6 +143,15 @@
             })(marker));
         }
 
+
+        function addEvent(){
+           $.post( "EventAdd.php", 
+            {lat: Math.random(), long: Math.random(), name: $("#name").val(), description: $("#description").val()
+            }, function(data){
+                $("#events").html(data);
+            });
+        }
+
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
@@ -261,13 +270,14 @@
                         </div>
                         <div class="form-group">        
                         <div class="col-sm-6 col-md-offset-4">
-                            <button class="btn btn-default" value="Submit">Submit</button>
+                            <button class="btn btn-default" value="Submit" onclick="addEvent()">Submit</button>
                         </div>
                         </div>
                     </form>
                 </div>
         </div>
     </div>
+    <div id = "events"></div>
     
     <div class="footer">
         <div class="container">
