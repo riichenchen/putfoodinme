@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <style type="text/css">
       html, body, #map-canvas { height: 500px; width: 100%; margin: 0; padding: 0;}
     </style>
@@ -10,7 +11,6 @@
     <script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">google.load("jquery", "1.3.2");</script>
     <script type="text/javascript" src="main.js"></script>
-
     <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
