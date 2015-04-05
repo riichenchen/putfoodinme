@@ -33,6 +33,11 @@ function initialize() {
 	addMyMarker();
 	refreshFood();
 	
+	google.maps.event.addListener(map, 'bounds_changed', function(event){
+		if(map.getBounds().contains(myMarker.position){
+			myMarker.setAnimation(google.maps.Animation.BOUNCE);
+		}
+	});
 	//console.log("Geocode: "+ getAddress(34.062928, -118.272561));
 	//changeLocation("2862 Mangin Crescent, Windsor, ON, Canada");
 }
