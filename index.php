@@ -189,13 +189,11 @@
     <div class="header">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Put Food In Me</a>
+                <a class="navbar-brand" href="#"><img src="http://i62.tinypic.com/2ike3k2.png"></a>
             </div>
                 <form class="navbar-right" role="search">
-                    <!-- <div class="form-group"> -->
                       <input type="text" class="search-query input-mysize" placeholder="Enter your address to put food in you now.">
                       <input type="submit" class="btn btn-default" value="Search">
-                    <!-- </div> -->
                 </form>
             </div>
         </div>

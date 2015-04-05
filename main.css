@@ -12,7 +12,13 @@ a, a:link, a:visited, a:hover, a:active {
     /*padding: 10px 5px 10px 5px;*/
     padding: 10px 0 10px 0;
 }
-.header .navbar-right {
+
+.navbar-brand {
+  float: left;
+  height: 50px;
+  padding: 0 0 0 0;
+  font-size: 18px;
+  line-height: 20px;
 }
 
 .input-mysize { 
