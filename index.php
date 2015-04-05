@@ -47,9 +47,9 @@
 			addMyMarker();
 			refreshFood();
 			
-			google.maps.event.addListener(map, 'click', function (event) {
-                addMarkerToMap(event.latLng.lat(), event.latLng.lng());
-            });
+			//google.maps.event.addListener(map, 'click', function (event) {
+            //    addMarkerToMap(event.latLng.lat(), event.latLng.lng());
+            //});
         }
 		
         function handleNoGeolocation(errorFlag) {
