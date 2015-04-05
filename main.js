@@ -216,20 +216,24 @@ function getAddress(lat, lng) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			console.log("Meep");
 			if (results[3]) {
-				console.log("There should be an address0");
+				console.log("There should be an address3");
 				computedAddress = results[3].formatted_address;
+				console.log(computedAddress);
 			}
 			if (results[2]) {
-				console.log("There should be an address1");
+				console.log("There should be an address2");
 				computedAddress = results[2].formatted_address;
+				console.log(computedAddress);
 			}
 			if (results[1]) {
-				console.log("There should be an address2");
+				console.log("There should be an address1");
 				computedAddress = results[1].formatted_address;
+				console.log(computedAddress);
 			}
 			if (results[0]) {
-				console.log("There should be an address3");
+				console.log("There should be an address0");
 				computedAddress = results[0].formatted_address;
+				console.log(computedAddress);
 			}
 		}
 	});
