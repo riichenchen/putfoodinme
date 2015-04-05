@@ -165,7 +165,7 @@ function addMarkerToMap(lat, long, name, description) {
     google.maps.event.addListener(marker, 'click', (function (marker) {
         return function () {
             infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
-                marker.position.lat()+", "+marker.position.lng()+"</p>");
+                getAddress(marker.position.lat(), marker.position.lng())+"</p>");
             infowindow.open(map, marker);
         }
     })(marker));
@@ -211,29 +211,25 @@ function incrementVote(upvote, name){
 function getAddress(lat, lng) {
 	var geocoder = new google.maps.Geocoder();
 	var latlng = new google.maps.LatLng(lat, lng);
-	var address = "("+lat+", "+lng+")";;
 	geocoder.geocode({'latLng': latlng}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			console.log("Meep");
-			if (results[4]) {
+			if (results[0]) {
 				console.log("There should be an address");
-				address = results[4].formatted_address;
-			}
-			if (results[3]) {
-				address = results[3].formatted_address;
-			}
-			if (results[2]) {
-				address = results[2].formatted_address;
+				return results[1].formatted_address;
 			}
 			if (results[1]) {
-				address = results[1].formatted_address;
+				return results[1].formatted_address;
 			}
-			if (results[0]) {
-				address = results[0].formatted_address;
+			if (results[2]) {
+				return results[2].formatted_address;
+			}
+			if (results[3]) {
+				return results[3].formatted_address;
 			}
 		} 
 	});
-	return address;
+	return "("+lat+", "+lng+")";
 }
 
 function changeLocation(address) {
@@ -243,6 +239,7 @@ function changeLocation(address) {
 			map.setCenter(results[0].geometry.location);
 			map.setZoom(15);
 			myMarker.setPosition(results[0].geometry.location);
+			myMarker.setAnimation(google.maps.Animation.BOUNCE);
 		} else {
 			alert("Geocode was not successful for the following reason: " + status);
 		}
