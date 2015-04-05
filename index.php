@@ -4,8 +4,9 @@
     <style type="text/css">
       html, body, #map-canvas { height: 100%; width: 90%; margin: 0; padding: 0;}
     </style>
-    <script type="text/javascript"
-      src="http://maps.google.com/maps/api/js?sensor=false">
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?
+      key=AIzaSyCZK6YY82pntmKcLQLBBr6LKV3vTXl40uc">
     </script>
     <script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">google.load("jquery", "1.3.2");</script>
@@ -146,6 +147,5 @@
   </head>
   <body>
   <div id="map-canvas">Stuff</div>
-  <?php echo "stuff"; ?>
   </body>
 </html>
