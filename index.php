@@ -56,7 +56,7 @@
                     <td><h5>EVENT</h5></td>
                     <td><h5>DISTANCE</h5></td>      
                     <td><h5>MOST RECENT FEEDING</h5></td>
-                    <td class="bar"><h5>% OF HUNGRY FED</h5></td>
+                    <td class="bar"><h5>EVENT RATING</h5></td>
                   </tr>
                 </table>
             </div>
