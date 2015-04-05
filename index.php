@@ -154,10 +154,7 @@
     <link rel="stylesheet" href="main.css">
 
   </head>
-<!--   <body>
-  <div id="map-canvas">Stuff</div>
-  <?php echo "stuff"; ?>
-  </body> -->
+
 <body>
     <div class="header">
         <div class="container">
@@ -179,6 +176,7 @@
         <div class="container">
             <div class="row">
             <!-- map of free food locations goes here -->
+                <div id="map-canvas">Stuff</div>
             </div>
         </div>
     </div>
@@ -278,5 +276,5 @@
         </div>
     </div>
 </body>
-  
+
 </html>
