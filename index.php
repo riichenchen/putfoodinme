@@ -217,8 +217,8 @@
                             </div>
                         </div>
                     </td>
-                    <td>&#128077;</td>
-                    <td>&#128078;</td>
+                    <td><img src="http://i59.tinypic.com/xszs6.png" height="20" width="20"></td>
+                    <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
                   <tr>
                     <td>'Event #' Free Tacos</td>
@@ -230,8 +230,8 @@
                             </div>
                         </div>
                     </td>
-                    <td>&#128077;</td>
-                    <td>&#128078;</td>
+                    <td><img src="http://i59.tinypic.com/xszs6.png" height="20" width="20"></td>
+                    <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
                   <tr>
                     <td>'Event #' Free Tacos</td>
@@ -243,8 +243,8 @@
                             </div>
                         </div>
                     </td>
-                     <td>&#128077;</td>
-                     <td>&#128078;</td>
+                    <td><img src="http://i59.tinypic.com/xszs6.png" height="20" width="20"></td>
+                    <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
                   <tr>
                     <td>'Event #' Free Tacos</td>
@@ -256,8 +256,8 @@
                             </div>
                         </div>
                     </td>
-                     <td>&#128077;</td>
-                     <td>&#128078;</td>
+                    <td><img src="http://i59.tinypic.com/xszs6.png" height="20" width="20"></td>
+                     <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
                 </table>
             </div>
