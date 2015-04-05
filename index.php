@@ -110,8 +110,22 @@
 			var address = "("+lat+", "+lng+")";;
 			geocoder.geocode({'latLng': latlng}, function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
+					console.log("Meep");
+					if (results[4]) {
+						console.log("There should be an address");
+						address = results[4].formatted_address;
+					}
+					if (results[3]) {
+						address = results[3].formatted_address;
+					}
+					if (results[2]) {
+						address = results[2].formatted_address;
+					}
 					if (results[1]) {
 						address = results[1].formatted_address;
+					}
+					if (results[0]) {
+						address = results[0].formatted_address;
 					}
 				} 
 			});
