@@ -34,7 +34,7 @@
                 navigator.geolocation.getCurrentPosition(function (position) {
                     myLat = position.coords.latitude;
                     myLong = position.coords.longitude;
-                    //myMarker.position = new google.maps.LatLng(myLat, myLong);
+                    myMarker.position = new google.maps.LatLng(myLat, myLong);
                     var pos = new google.maps.LatLng(myLat, myLong);
                     map.setCenter(pos);
                     map.setZoom(16);
@@ -46,6 +46,10 @@
             }
 			addMyMarker();
 			refreshFood();
+			
+			google.maps.event.addListener(map, 'click', function (event) {
+                addMarkerToMap(event.latLng.lat(), event.latLng.lng());
+            });
         }
 		
         function handleNoGeolocation(errorFlag) {
