@@ -8,7 +8,7 @@
 		   $.post( "EventAdd.php", 
             {lat: Math.random(), long: Math.random(), name: $(".name").val(), description: $(".description").val()
             }, function(data){
-            	$(".events").html(data);
+            	$(".events").html("<h1>Hello</h1>");
             	alert(data);
             });
 		}
@@ -23,8 +23,8 @@ $int is time of cookie expires*/
 ?>
 
 
-Name of Event: <input type="text" name="name"><br>
-Event Description: <input type="text" name="description"><br>
+Name of Event: <input type="text" id="name"><br>
+Event Description: <input type="text" id="description"><br>
 <button onclick="addEvent()">Submit</button>
 <div id = "events">
 </div>
