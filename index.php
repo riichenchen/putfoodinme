@@ -103,7 +103,7 @@
                     var events = JSON.parse(data);
 					events.splice(0, 1);
                     jQuery.each(events, function() {
-                      addMarkerToMap(this.lat, this.long, this.name, this.description);
+                      addMarkerToMap(this.latitude, this.longitude, this.name, this.description);
                     });
                 });
 			console.log(window.foodmarkers);
