@@ -93,7 +93,7 @@
                 content: content
             };
 
-            var infowindow = new google.maps.InfoWindow(options);
+            //var infowindow = new google.maps.InfoWindow(options);
             map.setCenter(options.position);
         }
         function getFoodLocations(latitude, longitude) {
@@ -146,6 +146,7 @@
 
         function addEvent(){
             if($("#event-name").val().length == 0 || $("#description").val().length == 0){
+                alert("This is reached");
                 $(".new-event").before('<div class="errorCode">Please Enter All Form Components</div>')
                 return;
             }
