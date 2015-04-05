@@ -4,15 +4,12 @@
 	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">google.load("jquery", "1.3.2");</script>
 	<script type="text/javascript">
+        $('document').ready(function(){
+            $("button").click(addEvent);
+        });
 		function addEvent(){
-		   $.post( "EventAdd.php", 
-            {lat: Math.random(), long: Math.random(), name: $("#name").val(), description: $("#description").val()
-            }, function(data){
-            	$("#events").html($("#name").val());
-            	alert(data);
-            });
+            alert("Here");
 		}
-        $("#events").text("Stuff");
 	</script>
 </head>
 <body>
