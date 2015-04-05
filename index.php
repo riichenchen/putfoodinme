@@ -112,8 +112,13 @@
 		}
         function distanceString(latitude, longitude){
           var dlat = myMarker.position.lat() - latitude;
+          console.log(latitude);
+          console.log(longitude);
+          console.log(myMarker.position.long());
+          console.log(myMarker.position.lat());
+          console.log(Math.cos(dlat / 2));
           //Distance in miles
-          var distance = 3959 * Math.hypot(dlat, (myMarker.position.long() - longitude)*Math.cos(dlat/2));
+          var distance = 3959 * Math.hypot(dlat, (myMarker.position.long() - longitude) * Math.cos(dlat / 2));
           if(distance < 1){
             //Convert distance to feet
             distance = distance * 5280;
