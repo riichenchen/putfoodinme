@@ -211,25 +211,29 @@ function incrementVote(upvote, name){
 function getAddress(lat, lng) {
 	var geocoder = new google.maps.Geocoder();
 	var latlng = new google.maps.LatLng(lat, lng);
-	geocoder.geocode({'latLng': latlng}, function(results, status) {
+	return geocoder.geocode({'latLng': latlng}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			console.log("Meep");
 			if (results[0]) {
-				console.log("There should be an address");
-				return results[1].formatted_address;
+				console.log("There should be an address0");
+				return results[0].formatted_address;
 			}
 			if (results[1]) {
+				console.log("There should be an address1");
 				return results[1].formatted_address;
 			}
 			if (results[2]) {
+				console.log("There should be an address2");
 				return results[2].formatted_address;
 			}
 			if (results[3]) {
+				console.log("There should be an address3");
 				return results[3].formatted_address;
 			}
-		} 
+		}
+		return "("+lat+", "+lng+")";
 	});
-	return "("+lat+", "+lng+")";
+	
 }
 
 function changeLocation(address) {
@@ -237,8 +241,9 @@ function changeLocation(address) {
 	geocoder.geocode( { 'address': address}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
-			map.setZoom(15);
 			myMarker.setPosition(results[0].geometry.location);
+			map.setZoom(15);
+			myMarker.setAnimation(null);
 			myMarker.setAnimation(google.maps.Animation.BOUNCE);
 		} else {
 			alert("Geocode was not successful for the following reason: " + status);
