@@ -126,7 +126,7 @@
 			foodmarkers = [];
 			//Add new food locations
 			$.post("getEvents.php", function(data){
-                    var events = jQuery.parseJSON(data);
+                    var events = JSON.parse(data);
 					events.splice(0, 1);
                     jQuery.each(events, function() {
                       addMarkerToMap(this.lat, this.long, this.name, this.description);
