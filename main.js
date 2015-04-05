@@ -83,10 +83,8 @@ function refreshFood() {
                 $("div.food-locations div.container").replaceWith(
                     "<h5>No Free Food :(</h5>But You Can Change That :)");
             }
-            console.log(events);
             var i = 0;
             jQuery.each(events, function() {
-                console.log(i++);
               addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
               tableRow +=  '<tr id = "$' + this.eventname + '">';
               tableRow +=  '<td><div class = "eventname">' + this.eventname + "</div></td>";
@@ -179,15 +177,15 @@ function search(){
 
 google.maps.event.addDomListener(window, 'load', initialize);
 $(".vote").click(function(){
-  var data;
-  var mangledName = this.closest("tr").attr('id');
-  if(this.hasClass("thumbsUp")){
-      data = {upvote: "true", eventname: mangledName.slice(1, mangledName.length)};
-  }
-  else{
-      data = {eventname: mangledName.slice(1, mangledName.length)};
-  }
-  console.log(data);
   alert("WHOA");
+  // var data;
+  // var mangledName = this.closest("tr").attr('id');
+  // if(this.hasClass("thumbsUp")){
+  //     data = {upvote: "true", eventname: mangledName.slice(1, mangledName.length)};
+  // }
+  // else{
+  //     data = {eventname: mangledName.slice(1, mangledName.length)};
+  // }
+  // console.log(data);
   //$.post( "incrementvote.php", data);
 });
