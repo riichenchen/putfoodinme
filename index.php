@@ -108,15 +108,13 @@
 		
 		function refreshFood() {
 			//Clear old markers
-			for (var i = 0; i < foodmarkers.length; i++) {
-				foodmarkers[i].setMap(null);
-			}
-			foodmarkers = [];
+			//for (var i = 0; i < foodmarkers.length; i++) {
+			//	foodmarkers[i].setMap(null);
+			//}
+			//foodmarkers = [];
 			//Add new food locations
 			$.post("getEvents.php", function(data){
-					console.log(data);
                     var events = JSON.parse(data);
-					console.log(events);
 					events.splice(0, 1);
                     jQuery.each(events, function() {
                       addMarkerToMap(this.lat, this.long, this.name, this.description);
@@ -130,6 +128,7 @@
         //for the content you want to appear in the info window
         //for the marker.
         function addMarkerToMap(lat, long, name, description) {
+			console.log("hi");
             var infowindow = new google.maps.InfoWindow();
             var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
