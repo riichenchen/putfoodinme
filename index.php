@@ -127,6 +127,7 @@
                 id: foodCount++,
                 position: myLatLng,
                 map: map,
+                draggable: true,
                 animation: google.maps.Animation.DROP
             });
 
