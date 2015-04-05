@@ -60,7 +60,8 @@
             google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
                     var myInfowindow = new google.maps.InfoWindow();
-                    myInfowindow.setContent("<p> Add food here </p>");
+                    myInfowindow.setContent("<p> Add food at (" + 
+                        myMarker.position.lat()+", "+myMarker.position.lng()+")</p>");
                     myInfowindow.open(map, myMarker);
                 }
             })(myMarker));
