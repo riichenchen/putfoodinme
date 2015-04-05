@@ -88,14 +88,14 @@ function refreshFood() {
             jQuery.each(events, function() {
                 console.log(i++);
               addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
-              tableRow +=  "<tr>"
-              tableRow +=  "<td>" + this.eventname + "</td>";
-              tableRow +=  "<td>" + distanceString(this.latitude, this.longitude) + "</td>";
-              tableRow +=  "<td>" + this.lastvote + "</td>";
+              tableRow +=  '<tr id = "$' + this.eventname + '>'
+              tableRow +=  '<td><div class = "eventname">' + this.eventname + "</div></td>";
+              tableRow +=  '<td><div class = "distance">' + distanceString(this.latitude, this.longitude) + "</div></td>";
+              tableRow +=  '<td><div class = "lastvote">' + this.lastvote + "</div></td>";
               tableRow +=  '<td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="';
               tableRow +=  this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="';
               tableRow +=  this.totalvotes.toString()+'" style="width: ';
-              tableRow +=  ((100.0 *  this.upvotes) / this.totalvotes).toString() + '%"></div></div></td>';
+              tableRow +=  ((100.0 *  this.upvotes + 1) / (this.totalvotes)+1).toString() + '%"></div></div><div class = "thumbsUp"></div><div class = "thumbsDown"></div></td>';
               tableRow +=  "</tr>";
               $('#FoodTable tr:last').after(tableRow);
               tableRow = "";
@@ -104,8 +104,13 @@ function refreshFood() {
 }
 function distanceString(latitude, longitude){
   var dlat = myMarker.position.lat() - latitude;
+  var dlng = myMarker.position.lng() - longitude;
+  var a = Math.sin(dlat/2) * Math.sin(dlat/2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlng/2) * Math.sin(dlng/2);
+  var c = Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  distance = c * 3961;
+  
   //Distance in miles
-  var distance = 3959 * Math.hypot(dlat, (myMarker.position.lng() - longitude) * Math.cos(dlat / 2));
+  //var distance = 3959 * Math.hypot(dlat, (myMarker.position.lng() - longitude) * Math.cos(dlat / 2));
   if(distance < 1){
     //Convert distance to feet
     distance = distance * 5280;
