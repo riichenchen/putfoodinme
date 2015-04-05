@@ -1,44 +1,33 @@
-	<?php
-		$EARTHDIAMETER = 12742;
-		//The maximum difference in longitude that we wish to find.
-		$maxDeltaLong = floatval($_POST['height']) / $EARTHDIAMETER;
-		//The maximum difference in latitude that we wish to find.
-		$maxDeltaLat = floatval($_POST['width']) / $EARTHDIAMETER;
-		$long = floatval($_POST['long']);
-		$lat = floatval($_POST['lat']);
-		$coslat = cos($lat);
-		echo "[";
-		echo "10]";
-// 	$servername = "localhost";
-// 	$username = "username";
-// 	$password = "password";
-// 	$dbname = "myDB";
-// 	//The maximum difference in longitude that we wish to find.
-// 	$maxDeltaLong = floatval($_POST['height']) / 6371;
-// 	//The maximum difference in latitude that we wish to find.
-// 	$maxDeltaLat = floatval($_POST['width']) / 6371;
-// 	$long = floatval($_POST['long']);
-// 	$lat = floatval($_POST['lat']);
-// 	$coslat = cos($lat);
+<?php
+	$host = "tcp:ex84mmt50m.database.windows.net,1433";
+	$user = "putfoodinme@ex84mmt50m";
+	$pwd = "PutF00dInMe";
+	$db = "food";
+	try{
+	    $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
+	    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	    $sql_select = "SELECT * FROM foodinfo";
+		$stmt = $conn->query($sql_select);
+		$foods = $stmt->fetchAll();
+		if(count($foods) > 0) {
+			echo '[{"noFood": false}'; 
+		    foreach($foods as $food) {
+		        echo ', {';
+		        echo '"name": "'.$food['Name'].'", ';
+		        echo '"description": "'.$food['Description'].'", ';
+		        echo '"latitude": '.$food['Latitude'].", ";
+		        echo '"longitude": '.$food['Longitude'].", ";
+		        echo '"upvotes": '.$food['Upvotes'].", ";
+		        echo '"totalvotes": '.$food['Votes'];
+		        echo'}';
+		    }
+		    echo "]";
+		} else {
+			echo '[{"noFood": true}]'; 
+		}
 
-// 	// Create connection
-// 	$conn = new mysqli($servername, $username, $password, $dbname);
-// 	// Check connection
-// 	if ($conn->connect_error) {
-// 	    die("Connection failed: " . $conn->connect_error);
-// 	} 
-
-// 	$query = "SELECT * FROM food WHERE (long-$long)*$coslat<$maxDeltaLong AND lat-$lat<$maxDeltaLat";
-// 	$result = $conn->query($query);
-
-// 	if ($result->num_rows > 0) {
-// 	    // output data of each row
-// 	    while($row = $result->fetch_assoc()) {
-// 	        echo "[{long:" . $row["long"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
-// 	    }
-// 	} else {
-// 	    echo "0 results";
-// 	}
-// 	$conn->close();
-
->
+		}
+	catch(Exception $e){
+	    die(print_r($e));
+	}
+?>

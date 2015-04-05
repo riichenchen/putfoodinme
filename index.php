@@ -15,9 +15,12 @@
         // is probably because you have denied permission for location sharing.
 
         var map;
+        var myMarker;
+		var myInfowindow;
         var myLat = 46.855141;
         var myLong = -96.8372664;
         var foodCount = 0;
+		var foodmarkers = [];
 
         function initialize() {
             var mapOptions = {
@@ -31,71 +34,58 @@
                 navigator.geolocation.getCurrentPosition(function (position) {
                     myLat = position.coords.latitude;
                     myLong = position.coords.longitude;
-                    myMarker.position = new google.maps.LatLng(myLat, myLong);
+                    //myMarker.position = new google.maps.LatLng(myLat, myLong);
                     var pos = new google.maps.LatLng(myLat, myLong);
-
-                    var infowindow = new google.maps.InfoWindow({
-                        map: map,
-                        position: pos,
-                        content: 'Location found using HTML5.'
-                    });
-
                     map.setCenter(pos);
                     map.setZoom(16);
                 }, function () {
                     handleNoGeolocation(true);
                 });
-            } else {
-                // Browser doesn't support Geolocation
+            } else {   // Browser doesn't support Geolocation
                 handleNoGeolocation(false);
             }
-
-            var myMarker = new google.maps.Marker({
-                position: new google.maps.LatLng(myLat, myLong),
-                map: map,
-                animation: google.maps.Animation.BOUNCE,
-                draggable: true
-            });
-            
-            google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
-                return function () {
-                    var myInfowindow = new google.maps.InfoWindow();
-                    myInfowindow.setContent("<p> Add food at (" + 
-                        myMarker.position.lat()+", "+myMarker.position.lng()+")</p>");
-                    myInfowindow.open(map, myMarker);
-                }
-            })(myMarker));
-            //alert("About to do something stupid");
-            google.maps.event.addListener(map, 'click', function (event) {
-                //window.location.href = "http://localhost/EventAddForm.php?lat=" +event.latLng.lat()+ "&long=" + event.latLng.lng();
-                addMarkerToMap(event.latLng.lat(), event.latLng.lng());
-            });
-
-            google.maps.event.addListener(map, 'rightclick', function (event) {
-                var infowindow = new google.maps.InfoWindow({
-                    map: map,
-                    position: event.latLng,
-                    content: 'Add free food or something'
-                });
-            });
+			addMyMarker();
+			refreshFood();
         }
-
+		
         function handleNoGeolocation(errorFlag) {
             if (errorFlag) {
                 var content = 'Error: The Geolocation service failed.';
             } else {
                 var content = 'Error: Your browser doesn\'t support geolocation.';
             }
-
+			myLat = 46.855141;
+			myLong = -96.8372664;
             var options = {
                 map: map,
-                position: new google.maps.LatLng(46.855141, -96.8372664),
+                position: new google.maps.LatLng(myLat, myLong),
                 content: content
             };
 
             var infowindow = new google.maps.InfoWindow(options);
             map.setCenter(options.position);
         }
+		
+		function addMyMarker() {
+			console.log(map);
+			myMarker = new google.maps.Marker({
+                position: new google.maps.LatLng(myLat, myLong),
+                map: map,
+				visible: true,
+                animation: google.maps.Animation.BOUNCE,
+                draggable: true
+            });
+			console.log(myMarker.position);
+            google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
+                return function () {
+                    myInfowindow = new google.maps.InfoWindow();
+                    myInfowindow.setContent("<p> Add food at (" + 
+                        myMarker.position.lat()+", "+myMarker.position.lng()+")</p>");
+                    myInfowindow.open(map, myMarker);
+                }
+            })(myMarker));
+		}
+		
         function getFoodLocations(latitude, longitude) {
             var spherical = google.maps.geometry.spherical, 
             bounds = map.getBounds(), 
@@ -115,6 +105,22 @@
                     var infowindow = new google.maps.InfoWindow();
                 });
         }
+		
+		function refreshFood() {
+			//Clear old markers
+			//for (var i = 0; i < foodmarkers.length; i++) {
+			//	foodmarkers[i].setMap(null);
+			//}
+			//foodmarkers = [];
+			//Add new food locations
+			$.post("getEvents.php", function(data){
+                    var events = JSON.parse(data);
+					events.splice(0, 1);
+                    jQuery.each(events, function() {
+                      addMarkerToMap(this.lat, this.long, this.name, this.description);
+                    });
+                });
+		}
 
 
         //This function will add a marker to the map each time it
@@ -122,13 +128,13 @@
         //for the content you want to appear in the info window
         //for the marker.
         function addMarkerToMap(lat, long, name, description) {
+			console.log("hi");
             var infowindow = new google.maps.InfoWindow();
             var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
                 id: foodCount++,
                 position: myLatLng,
                 map: map,
-                draggable: true,
                 animation: google.maps.Animation.DROP
             });
 
@@ -136,17 +142,34 @@
             //and places the marker on the map
             google.maps.event.addListener(marker, 'click', (function (marker) {
                 return function () {
-                    infowindow.setContent("<h1>Marker</h1><br><p>"+
+                    infowindow.setContent("<h1>"+name+"</h1><br><p>"+description+"</p><br><p>"+
                         marker.position.lat()+", "+marker.position.lng()+"</p>");
                     infowindow.open(map, marker);
                 }
             })(marker));
+			foodmarkers.push(marker);
+        }
+
+
+        function addEvent(){
+            if($("#event-name").val().length == 0 || $("#description").val().length == 0){
+                $(".error-message").html('Please Enter All Form Components');
+                return false;
+            }
+           $.post( "EventAdd.php", 
+            {lat: myMarker.position.lat(), long: myMarker.position.lng(), name: $("#event-name").val(), description: $("#description").val()
+            }, function(data){
+                $("#event-name").val('');
+                $("#description").val('');
+                $(".error-message").html('');
+                $("#events").html(data);
+            });
         }
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
-    <meta content='width=device-width, intial-scale=1.0, user-scalable=no' name='viewport'>
+    <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400' rel='stylesheet' type='text/css'>
@@ -255,7 +278,10 @@
         <div class="container">
             <h2> Create an Event </h2>
                 <div class="row">
-                    <form class="form-horizontal" role="form">
+                    <form id = "newEventForm" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class = "error-message"></div>
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-4" for="event-name">Event Name:</label>
                         <div class="col-sm-6 col-md-4">
@@ -265,18 +291,19 @@
                         <div class="form-group">
                             <label class="control-label col-md-4" for="description">Event Description:</label>
                         <div class="col-sm-6 col-md-4">          
-                            <textarea class="form-control description" placeholder="Type of food, what will be served, etc."></textarea>
+                            <textarea id="description" class="form-control description" placeholder="Type of food, what will be served, etc."></textarea>
                         </div>
                         </div>
                         <div class="form-group">        
-                        <div class="col-sm-6 col-md-offset-4">
-                            <input type="submit" class="btn btn-default" value="Submit">
-                        </div>
                         </div>
                     </form>
+                    <div class="col-sm-6 col-md-offset-4">
+                        <button class="btn btn-default" onclick = "addEvent()">Submit</button>
+                    </div>
                 </div>
         </div>
     </div>
+    <div id = "events"></div>
     
 <!--    <div class="footer">
         <div class="container">
