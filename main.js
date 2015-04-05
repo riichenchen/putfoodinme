@@ -219,6 +219,7 @@ function search(){
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function incrementVote(upvote, name){
+  alert("WHOA");
   var data;
   if(this.hasClass("upvote")){
       data = {upvote: "true", eventname: name};
@@ -226,7 +227,6 @@ function incrementVote(upvote, name){
   else{
       data = {eventname: name };
   }
-  alert("WHOA");
   //$.post( "incrementvote.php", data);
 }
 
