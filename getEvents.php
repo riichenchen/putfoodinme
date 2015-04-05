@@ -13,7 +13,7 @@
 			echo '[{"noFood": false}'; 
 		    foreach($foods as $food) {
 		        echo ', {';
-		        echo '"name": "'.$food['Name'].'", ';
+		        echo '"eventname": "'.$food['Name'].'", ';
 		        echo '"description": "'.$food['Description'].'", ';
 		        echo '"latitude": '.$food['Latitude'].", ";
 		        echo '"longitude": '.$food['Longitude'].", ";

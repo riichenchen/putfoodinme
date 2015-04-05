@@ -84,20 +84,11 @@ function refreshFood() {
                     "<h5>No Free Food :(</h5>But You Can Change That :)");
             }
             jQuery.each(events, function() {
-              addMarkerToMap(this.latitude, this.longitude, this.name, this.description);
-
-
-              table += "<tr><td>" + this.name + 
-                "</td><td>" + distanceString(this.latitude, this.longitude) +
-                "</td><td>" + 
-                '</td><td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'+
-                this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="'+
-                this.totalvotes.toString()+'" style="width: '+
-                ((100.0 *  this.upvotes) /  this.totalvotes).toString() + '%"></div></div>';
+              addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
 
               console.log("This is reached");
               tableRow +=  "<tr>"
-              tableRow +=  "<td>" + this.name + "</td>";
+              tableRow +=  "<td>" + this.eventname + "</td>";
               tableRow +=  "<td>" + distanceString(this.latitude, this.longitude) + "</td>";
               tableRow +=  "<td>" + this.lastvote + "</td>";
               tableRow +=  '<td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="';
