@@ -71,9 +71,11 @@
 			myMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(myLat, myLong),
                 map: map,
+				visible: true,
                 animation: google.maps.Animation.BOUNCE,
                 draggable: true
             });
+			console.log(myMarker.position);
             google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
                     myInfowindow = new google.maps.InfoWindow();
