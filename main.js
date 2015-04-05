@@ -253,6 +253,12 @@ function changeLocation(address) {
 		}
 	});
 }
+function findAddress(){
+    var query = $("#search-bar").val();
+    alert(query);
+    changeLocation(query);
+}
+
 
 $(".thumbsUp").click(function(){
   var mangledName = this.closest("tr").attr('id');
