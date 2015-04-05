@@ -6,7 +6,7 @@ $db = "food";
 try{
     $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    $sql_insert = "INSERT INTO foodinfo (name, description, LocationX, LocationY) 
+    $sql_insert = "INSERT INTO foodinfo (name, description, longitude, latitude) 
                    VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql_insert);
     $stmt->bindValue(1, $_POST["name"]);
@@ -14,8 +14,6 @@ try{
     $stmt->bindValue(3, floatval($_POST["lat"]));
     $stmt->bindValue(4, floatval($_POST["long"]));
     $stmt->execute();
-    echo "<h1>name: ".$_POST["name"];
-    echo "<h1>name: ".$_POST["description"];
     $sql_select = "SELECT * FROM foodinfo";
 	$stmt = $conn->query($sql_select);
 	$foods = $stmt->fetchAll(); 
