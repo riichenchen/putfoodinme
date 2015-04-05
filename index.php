@@ -121,6 +121,7 @@
                     var events = JSON.parse(data);
 					events.splice(0, 1);
                     jQuery.each(events, function() {
+					  console.log("yo");
                       addMarkerToMap(this.lat, this.long, this.name, this.description);
                     });
                 });
@@ -139,6 +140,7 @@
                 id: foodCount++,
                 position: myLatLng,
                 map: map,
+				visible: true,
                 animation: google.maps.Animation.DROP
             });
 
