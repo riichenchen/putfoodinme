@@ -101,6 +101,12 @@
                       addMarkerToMap(this.latitude, this.longitude, this.name, this.description);
                       tableRow +=  "<tr>"
                       tableRow +=  "<td>" + this.name + "</td>";
+                      tableRow +=  "<td>" + this. + "</td>";
+                      tableRow +=  '<td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="';
+                      tableRow +=  this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="';
+                      tableRow +=  this.totalvotes.toString()+'" style="width: ';
+                      tableRow +=  ((100.0 *  this.upvotes) / this.totalvotes).toString() + '%"></div></div></td>';
+                      tableRow +=  "</tr>";
 
                       $('table tr:last').after(tableRow);
                     });
