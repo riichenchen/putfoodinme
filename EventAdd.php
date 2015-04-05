@@ -1,5 +1,3 @@
-<html>
-<body>
 <?php
 $host = "tcp:ex84mmt50m.database.windows.net,1433";
 $user = "putfoodinme@ex84mmt50m";
@@ -11,10 +9,10 @@ try{
     $sql_insert = "INSERT INTO foodinfo (name, description, LocationX, LocationY) 
                    VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql_insert);
-    $stmt->bindValue(1, "Hello");
-    $stmt->bindValue(2, "World");
-    $stmt->bindValue(3, 20);
-    $stmt->bindValue(4, 15);
+    $stmt->bindValue(1, $_POST["name"]);
+    $stmt->bindValue(2, $_POST["description"]);
+    $stmt->bindValue(3, $_POST["lat"]);
+    $stmt->bindValue(4, $_POST["long"]);
     $stmt->execute();
     $sql_select = "SELECT * FROM foodinfo";
 	$stmt = $conn->query($sql_select);
@@ -37,11 +35,9 @@ try{
 	    echo "<h3>No food :(</h3>";
 	}
 
-}
+	}
 catch(Exception $e){
     die(print_r($e));
 }
 echo "still works";
 ?>
-</body>
-</html>

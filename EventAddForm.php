@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">google.load("jquery", "1.3.2");</script>
+	<script type="text/javascript">
+		function submitForm(){
+		   $.post( "EventAdd.php", 
+            {lat: Math.random(), long: Math.random(), name: $(".name").val(), description: $(".description").val()
+            }).done(function(data){
+            	$(".table").replaceWith(data);
+            });
+		}
+	</script>
+</head>
 <body>
-<?php 
-$int = 6000;
-setcookie("lat",$_GET['lat'],time()+$int);
-setcookie("long",$_GET['long'],time()+$int);
+<?php
+
 /*name is your cookie's name
 value is cookie's value
 $int is time of cookie expires*/
 ?>
 
 
-<form action="EventAdd.php" method="post">
-Name of Event: <input type="text" name="name"><br>
-Event Description: <input type="text" name="description"><br>
-<input type="submit">
+<form id = "event">
+	Name of Event: <input type="text" name="name"><br>
+	Event Description: <input type="text" name="description"><br>
+	<input type="hidden" name = "latitude" ><br>
+	<input type="hidden" name = "longitude"><br>
+	<button onclick="submitForm()">
 </form>
-
+<div id = "table">
+</div>
 
 </body>
 </html>
