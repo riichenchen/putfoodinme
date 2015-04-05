@@ -18,7 +18,7 @@
 		        echo '"latitude": '.$food['Latitude'].", ";
 		        echo '"longitude": '.$food['Longitude'].", ";
 		        echo '"upvotes": '.$food['Upvotes'].", ";
-		        echo '"totalvotes": '.$food['Votes'].", ";
+		        echo '"totalvotes": '.$food['Votes'];
 		        echo'}';
 		    }
 		    echo "]";
