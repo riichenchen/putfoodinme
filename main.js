@@ -7,6 +7,7 @@ var foodCount = 0;
 var foodmarkers = [];
 var geocoder = new google.maps.Geocoder();
 
+
 function initialize() {
     var mapOptions = {
         zoom: 6
@@ -108,16 +109,6 @@ function refreshFood() {
 
   $(".vote").click(function(){
     alert("WHOA");
-    // var data;
-    // var mangledName = this.closest("tr").attr('id');
-    // if(this.hasClass("thumbsUp")){
-    //     data = {upvote: "true", eventname: mangledName.slice(1, mangledName.length)};
-    // }
-    // else{
-    //     data = {eventname: mangledName.slice(1, mangledName.length)};
-    // }
-    // console.log(data);
-    //$.post( "incrementvote.php", data);
   });
 }
 function distanceString(lat1, lng1){
@@ -255,7 +246,6 @@ function changeLocation(address) {
 }
 function findAddress(){
     var query = $("#search-bar").val();
-    alert(query);
     changeLocation(query);
 }
 
