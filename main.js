@@ -237,7 +237,7 @@ function getAddress(lat, lng) {
 			}
 		}
 	});
-	console.log(window.computedAddress);
+	console.log("Final: " + window.computedAddress);
 	return window.computedAddress;
 }
 
