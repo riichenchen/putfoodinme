@@ -8,7 +8,7 @@
 		   $.post( "EventAdd.php", 
             {lat: Math.random(), long: Math.random(), name: $(".name").val(), description: $(".description").val()
             }).done(function(data){
-            	$(".table").replaceWith(data);
+            	alert(data);
             });
 		}
 	</script>
@@ -25,9 +25,7 @@ $int is time of cookie expires*/
 <form id = "event">
 	Name of Event: <input type="text" name="name"><br>
 	Event Description: <input type="text" name="description"><br>
-	<input type="hidden" name = "latitude" ><br>
-	<input type="hidden" name = "longitude"><br>
-	<button onclick="submitForm()">
+	<button onclick="submitForm()">Submit</button>
 </form>
 <div id = "table">
 </div>
