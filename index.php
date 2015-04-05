@@ -32,7 +32,7 @@
             </div>
 
                 <form class="navbar-right" role="search">
-                      <input type="text" class="search-query input-mysize" placeholder="Enter your address to put food in you now.">
+                      <input type="text" class="search-query input-mysize" id="search-bar" placeholder="Enter your address to put food in you now.">
                       <button type="button" class="btn btn-default" id="findAddress">Submit</button>
                 </form>
             </div>
