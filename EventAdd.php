@@ -6,7 +6,7 @@ $db = "food";
 try{
     $conn = new PDO( "sqlsrv:Server= $host ; Database = $db ", $user, $pwd);
     $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-    $sql_insert = "INSERT INTO foodinfo (name, description, longitude, latitude) 
+    $sql_insert = "INSERT INTO foodinfo (Name, Description, Longitude, Latitude) 
                    VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql_insert);
     $stmt->bindValue(1, $_POST["name"]);
@@ -25,10 +25,10 @@ try{
 	    echo "<th>Latitude</th>";
 	    echo "<th>Longitude</th></tr>";
 	    foreach($foods as $food) {
-	        echo "<tr><td>".$food['name']."</td>";
-	        echo "<td>".$food['description']."</td>";
-	        echo "<td>".$food['LocationX']."</td>";
-	        echo "<td>".$food['LocationY']."</td></tr>";
+	        echo "<tr><td>".$food['Name']."</td>";
+	        echo "<td>".$food['Description']."</td>";
+	        echo "<td>".$food['Latitude']."</td>";
+	        echo "<td>".$food['Longitude']."</td></tr>";
 	    }
 	    echo "</table>";
 	} else {
@@ -39,5 +39,4 @@ try{
 catch(Exception $e){
     die(print_r($e));
 }
-echo "still works";
 ?>
