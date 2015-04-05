@@ -207,33 +207,33 @@ function incrementVote(upvote, name){
   alert("WHOA");
   //$.post( "incrementvote.php", data);
 }
-
+var computedAddress;
 function getAddress(lat, lng) {
 	var geocoder = new google.maps.Geocoder();
 	var latlng = new google.maps.LatLng(lat, lng);
-	return geocoder.geocode({'latLng': latlng}, function(results, status) {
+	computedAddress = "("+lat+", "+lng+")";
+	geocoder.geocode({'latLng': latlng}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			console.log("Meep");
-			if (results[0]) {
+			if (results[3]) {
 				console.log("There should be an address0");
-				return results[0].formatted_address;
-			}
-			if (results[1]) {
-				console.log("There should be an address1");
-				return results[1].formatted_address;
+				computedAddress = results[3].formatted_address;
 			}
 			if (results[2]) {
-				console.log("There should be an address2");
-				return results[2].formatted_address;
+				console.log("There should be an address1");
+				computedAddress = results[2].formatted_address;
 			}
-			if (results[3]) {
+			if (results[1]) {
+				console.log("There should be an address2");
+				computedAddress = results[1].formatted_address;
+			}
+			if (results[0]) {
 				console.log("There should be an address3");
-				return results[3].formatted_address;
+				computedAddress = results[0].formatted_address;
 			}
 		}
-		return "("+lat+", "+lng+")";
 	});
-	
+	return computedAddress;
 }
 
 function changeLocation(address) {
