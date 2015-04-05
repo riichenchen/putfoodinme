@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <title> Put Food In Me </title>
+<link rel="shortcut icon" href="images/tabicon.ico"/>
   <head>
     <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <style type="text/css">
