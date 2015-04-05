@@ -33,14 +33,8 @@
                 navigator.geolocation.getCurrentPosition(function (position) {
                     myLat = position.coords.latitude;
                     myLong = position.coords.longitude;
-                    myMarker.position = new google.maps.LatLng(myLat, myLong);
+                    //myMarker.position = new google.maps.LatLng(myLat, myLong);
                     var pos = new google.maps.LatLng(myLat, myLong);
-
-                    //var infowindow = new google.maps.InfoWindow({
-                    //    map: map,
-                    //    position: pos
-                    //});
-
                     map.setCenter(pos);
                     map.setZoom(16);
                 }, function () {
@@ -49,7 +43,8 @@
             } else {   // Browser doesn't support Geolocation
                 handleNoGeolocation(false);
             }
-
+			addMyMarker();
+			/*
             myMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(myLat, myLong),
                 map: map,
@@ -65,6 +60,7 @@
                     myInfowindow.open(map, myMarker);
                 }
             })(myMarker));
+			*/
 			
 			/*
             google.maps.event.addListener(map, 'click', function (event) {
@@ -81,23 +77,43 @@
 			*/
 			refreshFood();
         }
-
+		
         function handleNoGeolocation(errorFlag) {
             if (errorFlag) {
                 var content = 'Error: The Geolocation service failed.';
             } else {
                 var content = 'Error: Your browser doesn\'t support geolocation.';
             }
-
+			myLat = 46.855141;
+			myLong = -96.8372664;
             var options = {
                 map: map,
-                position: new google.maps.LatLng(46.855141, -96.8372664),
+                position: new google.maps.LatLng(myLat, myLong),
                 content: content
             };
 
             var infowindow = new google.maps.InfoWindow(options);
             map.setCenter(options.position);
         }
+		
+		function addMyMarker() {
+			myMarker = new google.maps.Marker({
+                position: new google.maps.LatLng(myLat, myLong),
+                map: map,
+                animation: google.maps.Animation.BOUNCE,
+                draggable: true
+            });
+            
+            google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
+                return function () {
+                    var myInfowindow = new google.maps.InfoWindow();
+                    myInfowindow.setContent("<p> Add food at (" + 
+                        myMarker.position.lat()+", "+myMarker.position.lng()+")</p>");
+                    myInfowindow.open(map, myMarker);
+                }
+            })(myMarker));
+		}
+		
         function getFoodLocations(latitude, longitude) {
             var spherical = google.maps.geometry.spherical, 
             bounds = map.getBounds(), 
