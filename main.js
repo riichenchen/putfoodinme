@@ -31,7 +31,7 @@ function initialize() {
 	addMyMarker();
 	refreshFood();
 	
-	console.log("Geocode: "+getAddress(34.062928, -118.272561));
+	console.log("Geocode: "+ getAddress(34.062928, -118.272561));
 	changeLocation("2862 Mangin Crescent, Windsor, ON, Canada");
 }
 
@@ -207,7 +207,7 @@ function incrementVote(upvote, name){
   alert("WHOA");
   //$.post( "incrementvote.php", data);
 }
-var computedAddress;
+var computedAddress = "";
 function getAddress(lat, lng) {
 	var geocoder = new google.maps.Geocoder();
 	var latlng = new google.maps.LatLng(lat, lng);
@@ -218,25 +218,26 @@ function getAddress(lat, lng) {
 			if (results[3]) {
 				console.log("There should be an address3");
 				window.computedAddress = results[3].formatted_address;
-				console.log(computedAddress);
+				console.log(window.computedAddress);
 			}
 			if (results[2]) {
 				console.log("There should be an address2");
 				window.computedAddress = results[2].formatted_address;
-				console.log(computedAddress);
+				console.log(window.computedAddress);
 			}
 			if (results[1]) {
 				console.log("There should be an address1");
 				window.computedAddress = results[1].formatted_address;
-				console.log(computedAddress);
+				console.log(window.computedAddress);
 			}
 			if (results[0]) {
 				console.log("There should be an address0");
 				window.computedAddress = results[0].formatted_address;
-				console.log(computedAddress);
+				console.log(window.computedAddress);
 			}
 		}
 	});
+	console.log(window.computedAddress);
 	return window.computedAddress;
 }
 
