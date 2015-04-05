@@ -88,14 +88,15 @@ function refreshFood() {
             jQuery.each(events, function() {
                 console.log(i++);
               addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
-              tableRow +=  "<tr>"
-              tableRow +=  "<td>" + this.eventname + "</td>";
-              tableRow +=  "<td>" + distanceString(this.latitude, this.longitude) + "</td>";
-              tableRow +=  "<td>" + this.lastvote + "</td>";
+              tableRow +=  '<tr id = "$' + this.eventname + '>'
+              tableRow +=  '<td><div class = "eventname">' + this.eventname + "</div></td>";
+              tableRow +=  '<td><div class = "distance">' + distanceString(this.latitude, this.longitude) + "</div></td>";
+              tableRow +=  '<td><div class = "lastvote">' + this.lastvote + "</div></td>";
               tableRow +=  '<td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="';
               tableRow +=  this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="';
               tableRow +=  this.totalvotes.toString()+'" style="width: ';
-              tableRow +=  ((100.0 *  this.upvotes) / this.totalvotes).toString() + '%"></div></div></td>';
+              tableRow +=  ((100.0 *  this.upvotes) / this.totalvotes).toString() + '%"></div></div>
+                    <div class = "thumbsUp"></div><div class = "thumbsDown"></div></td>';
               tableRow +=  "</tr>";
               $('#FoodTable tr:last').after(tableRow);
               tableRow = "";
