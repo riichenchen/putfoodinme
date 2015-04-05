@@ -145,8 +145,12 @@
 
 
         function addEvent(){
+            if($("#event-name").val() === '' || $("#description").val() === ''){
+                $(".new-event").before('<div class="errorCode">Please Enter All Form Components</div>')
+                return;
+            }
            $.post( "EventAdd.php", 
-            {lat: Math.random(), long: Math.random(), name: $("#name").val(), description: $("#description").val()
+            {lat: Math.random(), long: Math.random(), name: $("#event-name").val(), description: $("#description").val()
             }, function(data){
                 $("#events").html(data);
             });
