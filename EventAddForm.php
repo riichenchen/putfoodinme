@@ -7,7 +7,7 @@
 		function addEvent(){
 		   $.post( "EventAdd.php", 
             {lat: Math.random(), long: Math.random(), name: $(".name").val(), description: $(".description").val()
-            }).done(function(data){
+            }, function(data){
             	alert(data);
             });
 		}
