@@ -47,9 +47,13 @@
 			addMyMarker();
 			refreshFood();
 			
-			google.maps.event.addListener(map, 'click', function (event) {
-                addMarkerToMap(event.latLng.lat(), event.latLng.lng());
-            });
+			console.log(foodmarkers);
+			for(i = 0; i<foodmarkers.length; i++){
+				foodmarkers[i].setMap(map);
+			}
+			//google.maps.event.addListener(map, 'click', function (event) {
+            //    addMarkerToMap(event.latLng.lat(), event.latLng.lng());
+            //});
         }
 		
         function handleNoGeolocation(errorFlag) {
@@ -71,7 +75,6 @@
         }
 		
 		function addMyMarker() {
-			console.log(map);
 			myMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(myLat, myLong),
                 map: map,
@@ -79,7 +82,6 @@
                 animation: google.maps.Animation.BOUNCE,
                 draggable: true
             });
-			console.log(myMarker.position);
             google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
                     myInfowindow = new google.maps.InfoWindow();
@@ -112,18 +114,23 @@
 		
 		function refreshFood() {
 			//Clear old markers
-			//for (var i = 0; i < foodmarkers.length; i++) {
-			//	foodmarkers[i].setMap(null);
-			//}
-			//foodmarkers = [];
+			for (var i = 0; i < foodmarkers.length; i++) {
+				foodmarkers[i].setMap(null);
+			}
+			foodmarkers = [];
 			//Add new food locations
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
 					events.splice(0, 1);
                     jQuery.each(events, function() {
+					  console.log("yo");
                       addMarkerToMap(this.lat, this.long, this.name, this.description);
                     });
                 });
+				
+			google.maps.event.addListener(map, 'click', function (event) {
+                addMarkerToMap(event.latLng.lat(), event.latLng.lng());
+            });
 		}
 
 
@@ -132,26 +139,28 @@
         //for the content you want to appear in the info window
         //for the marker.
         function addMarkerToMap(lat, long, name, description) {
-			console.log("hi");
+			console.log("1");
             var infowindow = new google.maps.InfoWindow();
             var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
-                id: foodCount++,
                 position: myLatLng,
                 map: map,
+				visible: true,
                 animation: google.maps.Animation.DROP
             });
-
+			console.log("2");
+			foodmarkers.push(marker);
             //Creates the event listener for clicking the marker
             //and places the marker on the map
-            google.maps.event.addListener(marker, 'click', (function (marker) {
+            google.maps.event.addListener(foodmarkers[foodmarkers.length-1], 'click', (function (marker) {
                 return function () {
                     infowindow.setContent("<h1>"+name+"</h1><br><p>"+description+"</p><br><p>"+
                         marker.position.lat()+", "+marker.position.lng()+"</p>");
                     infowindow.open(map, marker);
                 }
-            })(marker));
-			foodmarkers.push(marker);
+            })(foodmarkers[foodmarkers.length-1]));
+			
+			console.log("3");
         }
 
 
