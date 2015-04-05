@@ -168,7 +168,7 @@ function addMarkerToMap(lat, long, name, description) {
 	var infowindow = new google.maps.InfoWindow({
 		maxWidth: 150,
 		content: "<h3>"+name+"</h3><p>"+description+"</p><p>"+
-				 "("+foodmarkers[i].position.lat()+", "+ foodmarkers[i].position.lng()+")</p>"
+				 "("+marker.position.lat()+", "+ marker.position.lng()+")</p>"
 	});
 	geocoder.geocode({'latLng': myLatLng}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
