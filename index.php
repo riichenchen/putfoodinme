@@ -47,9 +47,9 @@
 			addMyMarker();
 			refreshFood();
 			
-			console.log(foodmarkers);
-			for(i = 0; i<foodmarkers.length; i++){
-				foodmarkers[i].setMap(map);
+			console.log(window.foodmarkers);
+			for(i = 0; i<window.foodmarkers.length; i++){
+				window.foodmarkers[i].setMap(map);
 			}
 			google.maps.event.addListener(map, 'click', function (event) {
                 addMarkerToMap(event.latLng.lat(), event.latLng.lng());
@@ -95,9 +95,9 @@
 		function refreshFood() {
 			//Clear old markers
 			for (var i = 0; i < foodmarkers.length; i++) {
-				foodmarkers[i].setMap(null);
+				window.foodmarkers[i].setMap(null);
 			}
-			foodmarkers = [];
+			window.foodmarkers = [];
 			//Add new food locations
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
@@ -106,7 +106,7 @@
                       addMarkerToMap(this.lat, this.long, this.name, this.description);
                     });
                 });
-			console.log(foodmarkers);
+			console.log(window.foodmarkers);
 		}
 
         //This function will add a marker to the map each time it
@@ -115,6 +115,8 @@
         //for the marker.
         function addMarkerToMap(lat, long, name, description) {
             var infowindow = new google.maps.InfoWindow();
+			console.log(lat);
+			console.log(long);
             var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
                 position: myLatLng,
@@ -132,9 +134,9 @@
                     infowindow.open(map, marker);
                 }
             })(marker));
-			var len = foodmarkers.push(marker);
+			var len = window.foodmarkers.push(marker);
 			console.log("Line 139:" + len);
-			console.log("Line 140:" + foodmarkers);
+			console.log("Line 140:" + window.foodmarkers);
         }
 
 
