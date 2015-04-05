@@ -87,7 +87,7 @@ function refreshFood() {
 	$.post("getEvents.php", function(data){
             var events = JSON.parse(data);
             var tableRow = "";
-            $('document').on("click", ".vote", function(){alert("Hello");} );
+            $(document).on("click", ".vote", function(){alert("Hello");} );
             if(events.shift().noFood){
                 $("div.food-locations div.container").replaceWith(
                     "<h5>No Free Food :(</h5>But You Can Change That :)");
@@ -104,7 +104,7 @@ function refreshFood() {
                 tableRow +=  this.totalvotes.toString()+'" style="width: ';
                 tableRow +=  ((100.0 *  this.upvotes + 1) / (this.totalvotes)+1).toString() + '%"></div></div>';
                 tableRow += '<div class = "vote thumbsUp" onclick="incrementVote(true, "'+this.eventname;
-                tableRow += '")></div><div class = "vote thumbsDown" onclick="incrementVote(false, "'+this.eventname+'")></div></td>';
+                tableRow += '")></div><div class = "vote thumbsDown"></div></td>';
                 tableRow +=  "</tr>";
                 $('#FoodTable tr:last').after(tableRow);
                 tableRow = "";
