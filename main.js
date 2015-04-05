@@ -95,8 +95,7 @@ function refreshFood() {
               tableRow +=  '<td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="';
               tableRow +=  this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="';
               tableRow +=  this.totalvotes.toString()+'" style="width: ';
-              tableRow +=  ((100.0 *  this.upvotes) / this.totalvotes).toString() + '%"></div></div>
-                    <div class = "thumbsUp"></div><div class = "thumbsDown"></div></td>';
+              tableRow +=  ((100.0 *  this.upvotes + 1) / (this.totalvotes)+1).toString() + '%"></div></div><div class = "thumbsUp"></div><div class = "thumbsDown"></div></td>';
               tableRow +=  "</tr>";
               $('#FoodTable tr:last').after(tableRow);
               tableRow = "";
