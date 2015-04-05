@@ -270,7 +270,7 @@
                         </div>
                         <div class="form-group">        
                         <div class="col-sm-6 col-md-offset-4">
-                            <button class="btn btn-default" value="Submit" onclick="addEvent()">Submit</button>
+                            <button class="btn btn-default" onclick="addEvent()">Submit</button>
                         </div>
                         </div>
                     </form>
