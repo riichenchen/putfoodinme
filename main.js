@@ -88,7 +88,7 @@ function refreshFood() {
             jQuery.each(events, function() {
                 console.log(i++);
               addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
-              tableRow +=  '<tr id = "$' + this.eventname + '>'
+              tableRow +=  '<tr id = "$' + this.eventname + '">';
               tableRow +=  '<td><div class = "eventname">' + this.eventname + "</div></td>";
               tableRow +=  '<td><div class = "distance">' + distanceString(this.latitude, this.longitude) + "</div></td>";
               tableRow +=  '<td><div class = "lastvote">' + this.lastvote + "</div></td>";
@@ -169,4 +169,31 @@ function addEvent(){
     });
 }
 
+function search(){
+    var query = $("#search-bar").val();
+    alert(query);
+    return false;
+}
+
 google.maps.event.addDomListener(window, 'load', initialize);
+function incrementVote(upvote, name){
+  var data;
+  if(this.hasClass("upvote")){
+      data = {upvote: "true", eventname: name};
+  }
+  else{
+      data = {eventname: name };
+  }
+  alert("WHOA");
+  //$.post( "incrementvote.php", data);
+}
+
+$(".thumbsUp").click(function(){
+  var mangledName = this.closest("tr").attr('id');
+  incrementVote(false, mangledName.slice(1, mangledName.length));
+});
+
+$(".thumbsDown").click(function(){
+  var mangledName = this.closest("tr").attr('id');
+  incrementVote(true, mangledName.slice(1, mangledName.length));
+});

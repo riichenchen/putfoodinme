@@ -9,16 +9,18 @@ a, a:link, a:visited, a:hover, a:active {
 
 .header {
     background-color: #b75656;
-    /*padding: 10px 5px 10px 5px;*/
-    padding: 10px 0 10px 0;
+    padding: 10px 0px 10px 0;
 }
 
-.navbar-brand {
-  float: left;
-  height: 50px;
-  padding: 0 0 0 0;
-  font-size: 18px;
-  line-height: 20px;
+.navbar-right {
+  float: right!important;
+  padding-top: 25px;
+  padding-right: 20px;
+}
+
+.header h1 {
+	font-family: 'Fjalla One', sans-serif;
+	padding-left: 15px;
 }
 
 .input-mysize { 
@@ -84,12 +86,35 @@ a, a:link, a:visited, a:hover, a:active {
 	max-height: 150px;
 }
 
-.progress {
+/*.progress {
 	width: auto;
 	position: relative;
 	margin: 0 auto;
-}
+}*/
 
 .error-message {
 	text-align: center;
+}
+
+.thumbsUp {
+	height: 20px;
+	width: 20px;
+	background-position: center;
+	background:url("http://i59.tinypic.com/xszs6.png");
+	background-size: 20px 20px;
+}
+
+.thumbsUp :hover{
+	cursor: pointer;
+}
+
+.thumbsDown {
+	height: 20px;
+	width: 20px;
+	background-position: center;
+	background:url("http://i57.tinypic.com/o72gox.png");
+	background-size: 20px 20px;
+}
+.thumbsDown :hover{
+	cursor: pointer;
 }
