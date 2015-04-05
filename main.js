@@ -102,26 +102,27 @@ function refreshFood() {
             });
         });
 }
-function distanceString(latitude, longitude){
-  var dlat = myMarker.position.lat() - latitude;
-  var dlng = myMarker.position.lng() - longitude;
-  var a = Math.sin(dlat/2) * Math.sin(dlat/2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlng/2) * Math.sin(dlng/2);
-  var c = Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-  distance = c * 3961;
+function distanceString(lat1, lng1){
+	var lat2 = myMarker.position.lat();
+	var dlat = myMarker.position.lat() - lat1;
+	var dlng = myMarker.position.lng() - lng1;
+	var a = Math.sin(dlat/2) * Math.sin(dlat/2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlng/2) * Math.sin(dlng/2);
+	var c = Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+	var distance = c * 3961;
   
-  //Distance in miles
-  //var distance = 3959 * Math.hypot(dlat, (myMarker.position.lng() - longitude) * Math.cos(dlat / 2));
-  if(distance < 1){
-    //Convert distance to feet
-    distance = distance * 5280;
-    distance = distance.toFixed(0);
-    distance += " feet";
-  }
-  else{
-    distance = distance.toFixed(2);
-    distance += " miles";
-  }
-  return distance;
+	//Distance in miles
+	//var distance = 3959 * Math.hypot(dlat, (myMarker.position.lng() - longitude) * Math.cos(dlat / 2));
+	if(distance < 1){
+		//Convert distance to feet
+		distance = distance * 5280;
+		distance = distance.toFixed(0);
+		distance += " feet";
+	}
+	else{
+		distance = distance.toFixed(2);
+		distance += " miles";
+	}
+	return distance;
 }
 //This function will add a marker to the map each time it
 //is called.  It takes latitude, longitude, and html markup
