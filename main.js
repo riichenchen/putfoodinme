@@ -30,6 +30,7 @@ function initialize() {
     }
 	addMyMarker();
 	refreshFood();
+	fixAddresses();
 	
 	console.log("Geocode: "+ getAddress(34.062928, -118.272561));
 	changeLocation("2862 Mangin Crescent, Windsor, ON, Canada");
@@ -162,14 +163,14 @@ function addMarkerToMap(lat, long, name, description) {
 
     //Creates the event listener for clicking the marker
     //and places the marker on the map
-    google.maps.event.addListener(marker, 'click', (function (marker) {
-        return function () {
-            infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
-                getAddress(marker.position.lat(), marker.position.lng())+"</p>");
-            infowindow.open(map, marker);
-        }
-    })(marker));
-	var len = window.foodmarkers.push(marker);
+ //   google.maps.event.addListener(marker, 'click', (function (marker) {
+ //       return function () {
+ //           infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
+ //               getAddress(marker.position.lat(), marker.position.lng())+"</p>");
+ //           infowindow.open(map, marker);
+ //       }
+ //   })(marker));
+ //	var len = window.foodmarkers.push(marker);
 }
 
 
@@ -207,38 +208,42 @@ function incrementVote(upvote, name){
   alert("WHOA");
   //$.post( "incrementvote.php", data);
 }
-var computedAddress = "";
-function getAddress(lat, lng) {
+
+function fixAddresses() {
 	var geocoder = new google.maps.Geocoder();
-	var latlng = new google.maps.LatLng(lat, lng);
-	window.computedAddress = "("+lat+", "+lng+")";
-	geocoder.geocode({'latLng': latlng}, function(results, status) {
-		if (status == google.maps.GeocoderStatus.OK) {
-			console.log("Meep");
-			if (results[3]) {
-				console.log("There should be an address3");
-				window.computedAddress = results[3].formatted_address;
-				console.log(window.computedAddress);
+	for (i = 0; i < foodmarkers.length; i++) {
+		var infowindow = new google.maps.InfoWindow({
+			maxWidth: 150,
+			content: "<h3>"+name+"</h3><p>"+description+"</p><p>"+
+					 "("+foodmarkers[i].position.lat()+", "+ foodmarkers[i].position.lng()+")</p>";
+		});
+		var lat = foodmarkers[i].position.lat();
+		var lng = foodmarkers[i].position.lng();
+		var latlng = new google.maps.LatLng(lat, lng);
+		geocoder.geocode({'latLng': latlng}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				if (results[0]) {
+					infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
+											results[0].formatted_address+"</p>");
+				}
+				else if (results[1]) {
+					infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
+											results[1].formatted_address+"</p>");
+				}
+				else if (results[2]) {
+					infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
+											results[2].formatted_address+"</p>");
+				}
 			}
-			if (results[2]) {
-				console.log("There should be an address2");
-				window.computedAddress = results[2].formatted_address;
-				console.log(window.computedAddress);
+		});
+		
+		google.maps.event.addListener(foodmarkers[i], 'click', (function (marker) {
+			return function () {
+				infowindow.open(map, marker);
 			}
-			if (results[1]) {
-				console.log("There should be an address1");
-				window.computedAddress = results[1].formatted_address;
-				console.log(window.computedAddress);
-			}
-			if (results[0]) {
-				console.log("There should be an address0");
-				window.computedAddress = results[0].formatted_address;
-				console.log(window.computedAddress);
-			}
-		}
-	});
-	console.log("Final: " + window.computedAddress);
-	return window.computedAddress;
+		})(foodmarker[i]));
+		
+	}
 }
 
 function changeLocation(address) {
