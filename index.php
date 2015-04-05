@@ -256,12 +256,12 @@
                         <div class="form-group">
                             <label class="control-label col-md-4" for="description">Event Description:</label>
                         <div class="col-sm-6 col-md-4">          
-                            <textarea class="form-control description" placeholder="Type of food, what will be served, etc."></textarea>
+                            <textarea class="form-control description" id="description" placeholder="Type of food, what will be served, etc."></textarea>
                         </div>
                         </div>
                         <div class="form-group">        
                         <div class="col-sm-6 col-md-offset-4">
-                            <input type="submit" class="btn btn-default" value="Submit">
+                            <button class="btn btn-default" value="Submit">
                         </div>
                         </div>
                     </form>
