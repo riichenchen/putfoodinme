@@ -108,6 +108,7 @@
                       addMarkerToMap(this.lat, this.long, this.name, this.description);
                     });
                 });
+			console.log(foodmarkers);
 		}
 
         //This function will add a marker to the map each time it
@@ -135,7 +136,8 @@
                     infowindow.open(map, marker);
                 }
             })(marker));
-			foodmarkers.push(marker);
+			var len = foodmarkers.push(marker);
+			console.log(len);
 			console.log(foodmarkers);
 			console.log("3");
         }
