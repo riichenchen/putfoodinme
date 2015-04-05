@@ -248,12 +248,3 @@ function findAddress(){
 }
 
 
-$(".thumbsUp").click(function(){
-});
-
-$(".thumbsDown").click(function(){
-  var mangledName = this.closest("tr").attr('id');
-  incrementVote(true, mangledName.slice(1, mangledName.length));
-});
-
-
