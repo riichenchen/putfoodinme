@@ -80,37 +80,39 @@ function refreshFood() {
 	
 	//Add new food locations
 	$.post("getEvents.php", function(data){
-    var events = JSON.parse(data);
-    var table = "";
-    var tableRow = "";
+            //var events = JSON.parse(data);
+            var events = {noFood: true};
+            var table = "";
+            var tableRow = "";
 
-    if(events.shift().noFood){
-        $("div.food-locations div.container").replaceWith(
-            "<h5>No Free Food :(</h5>But You Can Change That :)");
-    }
-    else{
-      jQuery.each(events, function() {
-        addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
-        tableRow +=  '<tr id = "$' + this.eventname + '">';
-        tableRow +=  '<td><div class = "eventname">' + this.eventname + "</div></td>";
-        tableRow +=  '<td><div class = "distance">' + distanceString(this.latitude, this.longitude) + "</div></td>";
-        tableRow +=  '<td><div class = "lastvote">' + this.lastvote + "</div></td>";
-        tableRow +=  '<td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="';
-        tableRow +=  this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="';
-        tableRow +=  this.totalvotes.toString()+'" style="width: ';
-        tableRow +=  ((100.0 *  this.upvotes + 1) / (this.totalvotes)+1).toString() + '%"></div></div>';
-        tableRow += '<div class = "vote thumbsUp"></div>'
-        tableRow += '<div class = "vote thumbsDown"></div></td>'
-        tableRow +=  "</tr>";
-        $('#FoodTable tr:last').after(tableRow);
-        tableRow = "";
-     });
-    } 
-  });  $(".vote").click(function(){
-    alert("WHOA");
-  });
+            if(events.shift().noFood){
+                $("div.food-locations div.container").replaceWith(
+                    "<h5>No Free Food :(</h5>But You Can Change That :)");
+            }
+            else{
+              jQuery.each(events, function() {
+                addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
+                tableRow +=  '<tr id = "$' + this.eventname + '">';
+                tableRow +=  '<td><div class = "eventname">' + this.eventname + "</div></td>";
+                tableRow +=  '<td><div class = "distance">' + distanceString(this.latitude, this.longitude) + "</div></td>";
+                tableRow +=  '<td><div class = "lastvote">' + this.lastvote + "</div></td>";
+                tableRow +=  '<td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="';
+                tableRow +=  this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="';
+                tableRow +=  this.totalvotes.toString()+'" style="width: ';
+                tableRow +=  ((100.0 *  this.upvotes + 1) / (this.totalvotes)+1).toString() + '%"></div></div>';
+                tableRow += '<div class = "vote thumbsUp"></div>'
+                tableRow += '<div class = "vote thumbsDown"></div></td>'
+                tableRow +=  "</tr>";
+                $('#FoodTable tr:last').after(tableRow);
+                tableRow = "";
+             });
+            } 
+        });
+
+        $(".vote").click(function(){
+          alert("WHOA");
+        });
 }
-
 function distanceString(lat1, lng1){
 	lat1 *= Math.PI/180;
 	lng1 *= Math.PI/180;
