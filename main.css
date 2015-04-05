@@ -86,11 +86,11 @@ a, a:link, a:visited, a:hover, a:active {
 	max-height: 150px;
 }
 
-.progress {
+/*.progress {
 	width: auto;
 	position: relative;
 	margin: 0 auto;
-}
+}*/
 
 .error-message {
 	text-align: center;
