@@ -103,14 +103,27 @@
                     });
                 });
 		}
-
+		
+		function getAddress(lat, lng) {
+			var latlng = new google.maps.LatLng(lat, lng);
+			var address = "("+lat+", "+lng+")";;
+			geocoder.geocode({'latLng': latlng}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					if (results[1]) {
+						address = results[1].formatted_address);
+					}
+				} 
+			});
+			return address;
+		}
+  
         //This function will add a marker to the map each time it
         //is called.  It takes latitude, longitude, and html markup
         //for the content you want to appear in the info window
         //for the marker.
-        function addMarkerToMap(lat, long, name, description) {
+        function addMarkerToMap(lat, lng, name, description) {
             var infowindow = new google.maps.InfoWindow();
-            var myLatLng = new google.maps.LatLng(lat, long);
+            var myLatLng = new google.maps.LatLng(lat, lng);
             var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
@@ -123,7 +136,7 @@
             google.maps.event.addListener(marker, 'click', (function (marker) {
                 return function () {
                     infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
-                        marker.position.lat()+", "+marker.position.lng()+"</p>");
+                        getAddress(marker.position.lat(), marker.position.lng())+"</p>");
                     infowindow.open(map, marker);
                 }
             })(marker));
