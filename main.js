@@ -63,12 +63,12 @@ function addMyMarker() {
         return function () {
             myMarker.setAnimation(google.maps.Animation.BOUNCE);
             myInfowindow = new google.maps.InfoWindow();
-            myInfowindow.setContent("<p> Drag to change your position </p><br><p> Use form below to add food event here.</p>");
+            myInfowindow.setContent("<p> Drag to change your position </p><p> Use form below to add food event here.</p>");
             myInfowindow.open(map, myMarker);
         }
     })(myMarker));
 
-    google.maps.event.addListener(myMarker, 'dragend', refreshFood());
+    //google.maps.event.addListener(myMarker, 'dragend', refreshFood());
 }
 
 
@@ -233,7 +233,7 @@ function changeLocation(address) {
 			myMarker.setPosition(results[0].geometry.location);
       map.setZoom(14);
 			map.setZoom(15);
-      refreshFood();
+      //refreshFood();
 		} else {
 			alert("Address could not be found.");
 		}
