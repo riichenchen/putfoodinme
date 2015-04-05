@@ -92,18 +92,40 @@
 			//Add new food locations
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
-                    var html = "";
-                    if(events.shift().noFood){
+                    var table = "";
+                    if(true){
                         $("div.food-locations div.container").replaceWith(
                             "<h5>No Free Food :(</h5>But You Can Change That :)");
                     }
                     jQuery.each(events, function() {
                       addMarkerToMap(this.latitude, this.longitude, this.name, this.description);
 
+                      table += "<tr><td>" + this.name + 
+                        "</td><td>" + distanceString(this.latitude, this.longitude) +
+                        "</td><td>" + 
+                        '</td><td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'+
+                        this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="'+
+                        this.totalvotes.toString()+'" style="width: '+
+                        ((100.0 *  this.upvotes) /  this.totalvotes).toString() + '%"></div></div>';
                     });
                 });
 		}
-
+        function distanceString(latitude, longitude){
+          var dlat = myMarker.position.lat() - latitude;
+          //Distance in miles
+          var distance = 3959 * Math.hypot(dlat, (myMarker.position.long() - longitude)*Math.cos(dlat/2));
+          if(distance < 1){
+            //Convert distance to feet
+            distance = distance * 5280;
+            distance = distance.toFixed(0);
+            distance += " feet";
+          }
+          else{
+            distance = distance.toFixed(2);
+            distance += " miles";
+          }
+          return distance;
+        }
         //This function will add a marker to the map each time it
         //is called.  It takes latitude, longitude, and html markup
         //for the content you want to appear in the info window
