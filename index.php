@@ -146,7 +146,7 @@
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 
-    <meta content='width=device-width, intial-scale=1.0, user-scalable=no' name='viewport'>
+    <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400' rel='stylesheet' type='text/css'>
@@ -261,7 +261,7 @@
                         </div>
                         <div class="form-group">        
                         <div class="col-sm-6 col-md-offset-4">
-                            <button class="btn btn-default" value="Submit">
+                            <button class="btn btn-default" value="Submit">Submit</button>
                         </div>
                         </div>
                     </form>
