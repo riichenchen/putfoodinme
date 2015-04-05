@@ -195,7 +195,7 @@ function search(){
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-<<<<<<< HEAD
+
 function incrementVote(upvote, name){
   var data;
   if(this.hasClass("upvote")){
@@ -258,7 +258,5 @@ $(".thumbsDown").click(function(){
   var mangledName = this.closest("tr").attr('id');
   incrementVote(true, mangledName.slice(1, mangledName.length));
 });
-=======
-$("document").ready(function(){
-});
->>>>>>> 9b1e0777815b203444e09dd35493bd532c649524
+
+
