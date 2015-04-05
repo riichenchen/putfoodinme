@@ -87,6 +87,7 @@ function refreshFood() {
 	$.post("getEvents.php", function(data){
             var events = JSON.parse(data);
             var tableRow = "";
+            $('document').on("click", ".vote", function(){alert("Hello");} );
             if(events.shift().noFood){
                 $("div.food-locations div.container").replaceWith(
                     "<h5>No Free Food :(</h5>But You Can Change That :)");
