@@ -6,14 +6,13 @@
 	<script type="text/javascript">
 		function addEvent(){
 		   $.post( "EventAdd.php", 
-            {lat: Math.random(), long: Math.random(), name: $(".name").val(), description: $(".description").val()
+            {lat: Math.random(), long: Math.random(), name: $("#name").val(), description: $("#description").val()
             }, function(data){
-            	$(".events").html("<h1>Hello</h1>");
-            	$("events").text($(".name").val());
+            	$("#events").html(data);
             	alert(data);
             });
 		}
-        $("events").text("Stuff");
+        $("#events").text("Stuff");
 	</script>
 </head>
 <body>
