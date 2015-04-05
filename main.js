@@ -77,6 +77,8 @@ function refreshFood() {
 		window.foodmarkers[i].setMap(null);
 	}
 	window.foodmarkers = [];
+  alert("Whoa");
+
 	
 	//Add new food locations
 	$.post("getEvents.php", function(data){
@@ -106,12 +108,11 @@ function refreshFood() {
         tableRow = "";
      });
     } 
-  });
-  alert("Whoa");
-  $(".vote").click(function(){
+  });  $(".vote").click(function(){
     alert("WHOA");
   });
 }
+
 function distanceString(lat1, lng1){
 	lat1 *= Math.PI/180;
 	lng1 *= Math.PI/180;
