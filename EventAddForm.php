@@ -8,8 +8,7 @@
 		   $.post( "EventAdd.php", 
             {lat: Math.random(), long: Math.random(), name: $("#name").val(), description: $("#description").val()
             }, function(data){
-            	$("#events").html($("#name").val());
-            	alert(data);
+            	$("#events").html(data);
             });
 		}
         $("#events").text("Stuff");
