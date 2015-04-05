@@ -15,6 +15,7 @@
         // is probably because you have denied permission for location sharing.
 
         var map;
+        var myMarker;
         var myLat = 46.855141;
         var myLong = -96.8372664;
         var foodCount = 0;
@@ -49,7 +50,7 @@
                 handleNoGeolocation(false);
             }
 
-            var myMarker = new google.maps.Marker({
+            myMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(myLat, myLong),
                 map: map,
                 animation: google.maps.Animation.BOUNCE,
@@ -149,7 +150,7 @@
                 return false;
             }
            $.post( "EventAdd.php", 
-            {lat: Math.random(), long: Math.random(), name: $("#event-name").val(), description: $("#description").val()
+            {lat: myMarker.position.lat(), long: myMarker.position.lng(), name: $("#event-name").val(), description: $("#description").val()
             }, function(data){
                 $("#event-name").val('');
                 $("#description").val('');
