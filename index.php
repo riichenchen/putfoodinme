@@ -93,12 +93,15 @@
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
                     var table = "";
+                    var tableRow = "";
+
                     if(events.shift().noFood){
                         $("div.food-locations div.container").replaceWith(
                             "<h5>No Free Food :(</h5>But You Can Change That :)");
                     }
                     jQuery.each(events, function() {
                       addMarkerToMap(this.latitude, this.longitude, this.name, this.description);
+
 
                       table += "<tr><td>" + this.name + 
                         "</td><td>" + distanceString(this.latitude, this.longitude) +
@@ -107,6 +110,20 @@
                         this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="'+
                         this.totalvotes.toString()+'" style="width: '+
                         ((100.0 *  this.upvotes) /  this.totalvotes).toString() + '%"></div></div>';
+
+                      console.log("This is reached");
+                      tableRow +=  "<tr>"
+                      tableRow +=  "<td>" + this.name + "</td>";
+                      tableRow +=  "<td>" + distanceString(this.latitude, this.longitude) + "</td>";
+                      tableRow +=  "<td>" + this.lastvote + "</td>";
+                      tableRow +=  '<td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="';
+                      tableRow +=  this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="';
+                      tableRow +=  this.totalvotes.toString()+'" style="width: ';
+                      tableRow +=  ((100.0 *  this.upvotes) / this.totalvotes).toString() + '%"></div></div></td>';
+                      tableRow +=  "</tr>";
+                      console.log(tableRow);
+                      $('#FoodTable tr:last').after(tableRow);
+
                     });
                 });
 		}
@@ -175,7 +192,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Condensed:700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="main.css">
 
   </head>
@@ -187,6 +204,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="#"><img src="http://i62.tinypic.com/2ike3k2.png"></a>
             </div>
+
                 <form class="navbar-right" role="search">
                       <input type="text" class="search-query input-mysize" placeholder="Enter your address to put food in you now.">
                       <input type="submit" class="btn btn-default" value="Search">
@@ -207,7 +225,7 @@
         <div class="container">
             <div class="row">
              <h1>Free Food Near Me</h1> 
-                <table class="table">
+                <table class="table" id="FoodTable">
                   <tr>
                     <td><h5>EVENT</h5></td>
                     <td><h5>DISTANCE</h5></td>      
@@ -229,7 +247,6 @@
                     <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
                     </td>
                   </tr>
-
 
                   <tr>
                     <td>'Event #' Free Tacos</td>
@@ -253,10 +270,11 @@
                             <span class="sr-only">60% Complete (success)</span>
                             </div>
                         </div>
-                        <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
-                        <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
+                    <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                    <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
                     </td>
                   </tr>
+
                   <tr>
                     <td>'Event #' Free Tacos</td>
                     <td>1.1 miles</td>      
