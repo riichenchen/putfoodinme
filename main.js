@@ -32,8 +32,8 @@ function initialize() {
 	refreshFood();
 	fixAddresses();
 	
-	console.log("Geocode: "+ getAddress(34.062928, -118.272561));
-	changeLocation("2862 Mangin Crescent, Windsor, ON, Canada");
+	//console.log("Geocode: "+ getAddress(34.062928, -118.272561));
+	//changeLocation("2862 Mangin Crescent, Windsor, ON, Canada");
 }
 
 function handleNoGeolocation(errorFlag) {
