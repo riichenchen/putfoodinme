@@ -83,3 +83,7 @@ a, a:link, a:visited, a:hover, a:active {
 	position: relative;
 	margin: 0 auto;
 }
+
+.error-message {
+	text-align: center;
+}
