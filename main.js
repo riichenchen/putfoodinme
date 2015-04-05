@@ -215,7 +215,7 @@ function fixAddresses() {
 		var infowindow = new google.maps.InfoWindow({
 			maxWidth: 150,
 			content: "<h3>"+name+"</h3><p>"+description+"</p><p>"+
-					 "("+foodmarkers[i].position.lat()+", "+ foodmarkers[i].position.lng()+")</p>";
+					 "("+foodmarkers[i].position.lat()+", "+ foodmarkers[i].position.lng()+")</p>"
 		});
 		var lat = foodmarkers[i].position.lat();
 		var lng = foodmarkers[i].position.lng();
