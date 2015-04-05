@@ -97,6 +97,7 @@
         }
 		
 		function addMyMarker() {
+			console.log("Hiyo");
 			myMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(myLat, myLong),
                 map: map,
