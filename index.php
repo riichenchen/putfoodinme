@@ -46,14 +46,6 @@
             }
 			addMyMarker();
 			refreshFood();
-			
-			console.log(window.foodmarkers);
-			for(i = 0; i<window.foodmarkers.length; i++){
-				window.foodmarkers[i].setMap(map);
-			}
-			google.maps.event.addListener(map, 'click', function (event) {
-                addMarkerToMap(event.latLng.lat(), event.latLng.lng());
-            });
         }
 		
         function handleNoGeolocation(errorFlag) {
@@ -62,8 +54,6 @@
             } else {
                 var content = 'Error: Your browser doesn\'t support geolocation.';
             }
-			myLat = 46.855141;
-			myLong = -96.8372664;
             var options = {
                 map: map,
                 position: new google.maps.LatLng(myLat, myLong),
@@ -98,6 +88,7 @@
 				window.foodmarkers[i].setMap(null);
 			}
 			window.foodmarkers = [];
+			
 			//Add new food locations
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
@@ -106,7 +97,6 @@
                       addMarkerToMap(this.latitude, this.longitude, this.name, this.description);
                     });
                 });
-			console.log(window.foodmarkers);
 		}
 
         //This function will add a marker to the map each time it
@@ -115,8 +105,6 @@
         //for the marker.
         function addMarkerToMap(lat, long, name, description) {
             var infowindow = new google.maps.InfoWindow();
-			console.log(lat);
-			console.log(long);
             var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
                 position: myLatLng,
@@ -124,7 +112,7 @@
 				visible: true,
                 animation: google.maps.Animation.DROP
             });
-			console.log("line 125: "+marker.position+","+marker.map);
+
             //Creates the event listener for clicking the marker
             //and places the marker on the map
             google.maps.event.addListener(marker, 'click', (function (marker) {
@@ -135,8 +123,6 @@
                 }
             })(marker));
 			var len = window.foodmarkers.push(marker);
-			console.log("Line 139:" + len);
-			console.log("Line 140:" + window.foodmarkers);
         }
 
 
