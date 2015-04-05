@@ -202,7 +202,10 @@
         <div class="container">
         <div class="row">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#"><img src="http://i62.tinypic.com/2ike3k2.png"></a>
+                <!-- <a class="navbar-brand" href="#"> -->
+                <!-- <img src="http://i62.tinypic.com/2ike3k2.png"> -->
+                <h1>PUTFOODIN.ME</h1>
+                <!-- </a> -->
             </div>
 
                 <form class="navbar-right" role="search">

@@ -9,16 +9,18 @@ a, a:link, a:visited, a:hover, a:active {
 
 .header {
     background-color: #b75656;
-    /*padding: 10px 5px 10px 5px;*/
-    padding: 10px 0 10px 0;
+    padding: 10px 0px 10px 0;
 }
 
-.navbar-brand {
-  float: left;
-  height: 50px;
-  padding: 0 0 0 0;
-  font-size: 18px;
-  line-height: 20px;
+.navbar-right {
+  float: right!important;
+  padding-top: 25px;
+  padding-right: 20px;
+}
+
+.header h1 {
+	font-family: 'Fjalla One', sans-serif;
+	padding-left: 15px;
 }
 
 .input-mysize { 
@@ -92,4 +94,12 @@ a, a:link, a:visited, a:hover, a:active {
 
 .error-message {
 	text-align: center;
+}
+
+.thumbsUp {
+
+}
+
+.thumbsDown {
+
 }
