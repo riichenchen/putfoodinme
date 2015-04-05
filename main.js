@@ -81,7 +81,7 @@ function refreshFood() {
 	//Add new food locations
 	$.post("getEvents.php", function(data){
             //var events = JSON.parse(data);
-            var events = {noFood: true};
+            var events = [{noFood: true}];
             var table = "";
             var tableRow = "";
 
