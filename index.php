@@ -24,7 +24,7 @@
 
         function initialize() {
             var mapOptions = {
-                zoom: 15
+                zoom: 6
             };
             map = new google.maps.Map(document.getElementById('map-canvas'),
               mapOptions);
@@ -37,7 +37,7 @@
                     myMarker.position = new google.maps.LatLng(myLat, myLong);
                     var pos = new google.maps.LatLng(myLat, myLong);
                     map.setCenter(pos);
-                    map.setZoom(15);
+                    map.setZoom(16);
                 }, function () {
                     handleNoGeolocation(true);
                 });
@@ -75,7 +75,7 @@
             google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
                     myInfowindow = new google.maps.InfoWindow();
-                    myInfowindow.setContent("<p> Drag to change your position </p><p> Use form below to add food event here.</p>");
+                    myInfowindow.setContent("<p> Drag to change your position </p><br><p> Use form below to add food event here.</p>");
                     myInfowindow.open(map, myMarker);
                 }
             })(myMarker));
@@ -92,7 +92,7 @@
 			//Add new food locations
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
-                    var html = "";
+                    var table = "";
                     if(events.shift().noFood){
                         $("div.food-locations div.container").replaceWith(
                             "<h5>No Free Food :(</h5>But You Can Change That :)");
@@ -100,31 +100,39 @@
                     jQuery.each(events, function() {
                       addMarkerToMap(this.latitude, this.longitude, this.name, this.description);
 
+                      table += "<tr><td>" + this.name + 
+                        "</td><td>" + distanceString(this.latitude, this.longitude) +
+                        "</td><td>" + 
+                        '</td><td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'+
+                        this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="'+
+                        this.totalvotes.toString()+'" style="width: '+
+                        ((100.0 *  this.upvotes) /  this.totalvotes).toString() + '%"></div></div>';
                     });
                 });
 		}
-		
-		function getAddress(lat, lng) {
-			var geocoder = new google.maps.Geocoder();
-			var latlng = new google.maps.LatLng(lat, lng);
-			var address = "("+lat+", "+lng+")";;
-			geocoder.geocode({'latLng': latlng}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					if (results[1]) {
-						address = results[1].formatted_address;
-					}
-				} 
-			});
-			return address;
-		}
-  
+        function distanceString(latitude, longitude){
+          var dlat = myMarker.position.lat() - latitude;
+          //Distance in miles
+          var distance = 3959 * Math.hypot(dlat, (myMarker.position.lng() - longitude) * Math.cos(dlat / 2));
+          if(distance < 1){
+            //Convert distance to feet
+            distance = distance * 5280;
+            distance = distance.toFixed(0);
+            distance += " feet";
+          }
+          else{
+            distance = distance.toFixed(2);
+            distance += " miles";
+          }
+          return distance;
+        }
         //This function will add a marker to the map each time it
         //is called.  It takes latitude, longitude, and html markup
         //for the content you want to appear in the info window
         //for the marker.
-        function addMarkerToMap(lat, lng, name, description) {
+        function addMarkerToMap(lat, long, name, description) {
             var infowindow = new google.maps.InfoWindow();
-            var myLatLng = new google.maps.LatLng(lat, lng);
+            var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
@@ -137,7 +145,7 @@
             google.maps.event.addListener(marker, 'click', (function (marker) {
                 return function () {
                     infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
-                        getAddress(marker.position.lat(), marker.position.lng())+"</p>");
+                        marker.position.lat()+", "+marker.position.lng()+"</p>");
                     infowindow.open(map, marker);
                 }
             })(marker));
@@ -159,19 +167,6 @@
                 $("#events").html(data);
             });
         }
-		
-		function changeLocation(address) {
-			var geocoder = new google.maps.Geocoder();
-			geocoder.geocode( { 'address': address}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					map.setCenter(results[0].geometry.location);
-					map.setZoom(15);
-					myMarker.setPosition(results[0].geometry.location);
-				} else {
-					alert("Geocode was not successful for the following reason: " + status);
-				}
-			});
-		}
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
@@ -188,6 +183,7 @@
 <body>
     <div class="header">
         <div class="container">
+        <div class="row">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#"><img src="http://i62.tinypic.com/2ike3k2.png"></a>
             </div>
@@ -195,6 +191,7 @@
                       <input type="text" class="search-query input-mysize" placeholder="Enter your address to put food in you now.">
                       <input type="submit" class="btn btn-default" value="Search">
                 </form>
+            </div>
             </div>
         </div>
 
@@ -219,7 +216,7 @@
                   </tr>
 
                   <tr>
-                    <td>Free Tacos</td>
+                    <td>'Event #' Free Tacos</td>
                     <td>1.1 miles</td>      
                     <td>1:00 PM</td>
                     <td>
@@ -228,13 +225,14 @@
                             <span class="sr-only">80% Complete (success)</span>
                             </div>
                         </div>
-                        <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
-                        <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
+                    <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                    <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
                     </td>
                   </tr>
 
+
                   <tr>
-                    <td>Free Nachos</td>
+                    <td>'Event #' Free Tacos</td>
                     <td>1.1 miles</td>      
                     <td>1:00 PM</td>
                     <td><div class="progress">
@@ -242,12 +240,12 @@
                             <span class="sr-only">40% Complete (success)</span>
                             </div>
                         </div>
-                        <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
-                        <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
+                    <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                    <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
                     </td>
                   </tr>
                   <tr>
-                    <td>Free Tacos</td>
+                    <td>'Event #' Free Tacos</td>
                     <td>1.1 miles</td>      
                     <td>1:00 PM</td>
                     <td><div class="progress">
@@ -260,7 +258,7 @@
                     </td>
                   </tr>
                   <tr>
-                    <td>Free Tacos</td>
+                    <td>'Event #' Free Tacos</td>
                     <td>1.1 miles</td>      
                     <td>1:00 PM</td>
                     <td><div class="progress">
@@ -268,8 +266,8 @@
                             <span class="sr-only">20% Complete (success)</span>
                             </div>
                         </div>
-                        <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
-                        <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
+                    <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                    <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
                     </td>
                   </tr>
                 </table>
@@ -300,7 +298,7 @@
                         <div class="form-group">        
                         </div>
                     </form>
-                    <div class="col-md-4 col-md-offset-4">
+                    <div class="col-sm-6 col-md-offset-4">
                         <button class="btn btn-default" onclick = "addEvent()">Submit</button>
                     </div>
                 </div>
