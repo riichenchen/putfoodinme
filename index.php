@@ -2,7 +2,7 @@
 <html>
   <head>
     <style type="text/css">
-      html, body, #map-canvas { height: 100%; width: 90%; margin: 0; padding: 0;}
+      html, body, #map-canvas { height: 50%; width: 100%; margin: 0; padding: 0;}
     </style>
     <script type="text/javascript"
       src="http://maps.google.com/maps/api/js?sensor=false">
