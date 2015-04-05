@@ -10,20 +10,20 @@
 		$stmt = $conn->query($sql_select);
 		$foods = $stmt->fetchAll();
 		if(count($foods) > 0) {
-			echo '[{"noFood":false}'; 
+			echo '[{"noFood": false}'; 
 		    foreach($foods as $food) {
 		        echo ', {';
-		        echo '"name": "'.$food['Name'].'"';
-		        echo '"description": "'.$food['Description'].'"';
-		        echo '"latitude": '.$food['Latitude'];
-		        echo '"longitude": '.$food['Longitude'];
-		        echo '"upvotes": '.$food['Upvotes'];
-		        echo '"totalvotes": '.$food['Votes'];
+		        echo '"name": "'.$food['Name'].'", ';
+		        echo '"description": "'.$food['Description'].'", ';
+		        echo '"latitude": '.$food['Latitude'].", ";
+		        echo '"longitude": '.$food['Longitude'].", ";
+		        echo '"upvotes": '.$food['Upvotes'].", ";
+		        echo '"totalvotes": '.$food['Votes'].", ";
 		        echo'}';
 		    }
 		    echo "]";
 		} else {
-			echo '[{"noFood": false}]'; 
+			echo '[{"noFood": true}]'; 
 		}
 
 		}
