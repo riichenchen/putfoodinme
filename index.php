@@ -35,10 +35,10 @@
                     myMarker.position = new google.maps.LatLng(myLat, myLong);
                     var pos = new google.maps.LatLng(myLat, myLong);
 
-                    var infowindow = new google.maps.InfoWindow({
-                        map: map,
-                        position: pos
-                    });
+                    //var infowindow = new google.maps.InfoWindow({
+                    //    map: map,
+                    //    position: pos
+                    //});
 
                     map.setCenter(pos);
                     map.setZoom(16);
@@ -65,9 +65,9 @@
                     myInfowindow.open(map, myMarker);
                 }
             })(myMarker));
-            //alert("About to do something stupid");
+			
+			/*
             google.maps.event.addListener(map, 'click', function (event) {
-                //window.location.href = "http://localhost/EventAddForm.php?lat=" +event.latLng.lat()+ "&long=" + event.latLng.lng();
                 addMarkerToMap(event.latLng.lat(), event.latLng.lng());
             });
 
@@ -78,6 +78,7 @@
                     content: 'Add free food or something'
                 });
             });
+			*/
         }
 
         function handleNoGeolocation(errorFlag) {
@@ -93,7 +94,7 @@
                 content: content
             };
 
-            //var infowindow = new google.maps.InfoWindow(options);
+            var infowindow = new google.maps.InfoWindow(options);
             map.setCenter(options.position);
         }
         function getFoodLocations(latitude, longitude) {
