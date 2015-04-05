@@ -19,7 +19,9 @@
 		        echo '"longitude": '.$food['Longitude'].", ";
 		        echo '"upvotes": '.$food['Upvotes'].", ";
 		        echo '"totalvotes": '.$food['Votes'].", ";
-		        echo '"lastvote": "'.$food['Lastvote'].'"';
+		        $phpdate = strtotime($food['Lastvote']);
+				$date = date( 'm-d H:i', $phpdate );
+		        echo '"lastvote": "'.$date.'"';
 		        echo'}';
 		    }
 		    echo "]";
