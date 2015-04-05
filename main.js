@@ -81,8 +81,7 @@ function refreshFood() {
 	//Add new food locations
 	$.post("getEvents.php", function(data){
             //var events = JSON.parse(data);
-            var events = [{noFood: true}];
-            var table = "";
+            var events = [{"noFood": false}, {"eventname": "LA Hacks 2015", "description": "Pizza, Croissants, Jamba Juice, Team Spirit!", "latitude": 34.0631451, "longitude": -118.4367551, "upvotes": , "totalvotes": , "lastvote": "04-05 16:12"}];
             var tableRow = "";
 
             if(events.shift().noFood){
