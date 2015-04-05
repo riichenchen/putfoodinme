@@ -77,7 +77,6 @@ function refreshFood() {
 		window.foodmarkers[i].setMap(null);
 	}
 	window.foodmarkers = [];
-  alert("Whoa");
 
 	
 	//Add new food locations
@@ -108,8 +107,9 @@ function refreshFood() {
         tableRow = "";
      });
     } 
-  });  $(".vote").click(function(){
-    alert("WHOA");
+    $(".vote").click(function(){
+      alert("WHOA");
+    });
   });
 }
 
