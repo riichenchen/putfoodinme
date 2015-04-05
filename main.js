@@ -83,11 +83,11 @@ function refreshFood() {
                 $("div.food-locations div.container").replaceWith(
                     "<h5>No Free Food :(</h5>But You Can Change That :)");
             }
-                          console.log(events);
-
+            console.log(events);
+            var i = 0;
             jQuery.each(events, function() {
+                console.log(i++);
               addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
-              console.log("This is reached");
               tableRow +=  "<tr>"
               tableRow +=  "<td>" + this.eventname + "</td>";
               tableRow +=  "<td>" + distanceString(this.latitude, this.longitude) + "</td>";
