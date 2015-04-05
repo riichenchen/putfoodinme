@@ -101,6 +101,20 @@ function refreshFood() {
               tableRow = "";
             });
         });
+
+  $(".vote").click(function(){
+    alert("WHOA");
+    // var data;
+    // var mangledName = this.closest("tr").attr('id');
+    // if(this.hasClass("thumbsUp")){
+    //     data = {upvote: "true", eventname: mangledName.slice(1, mangledName.length)};
+    // }
+    // else{
+    //     data = {eventname: mangledName.slice(1, mangledName.length)};
+    // }
+    // console.log(data);
+    //$.post( "incrementvote.php", data);
+  });
 }
 function distanceString(lat1, lng1){
 	lat1 *= Math.PI/180;
@@ -177,17 +191,4 @@ function search(){
 
 google.maps.event.addDomListener(window, 'load', initialize);
 $("document").ready(function(){
-  $(".vote").click(function(){
-    alert("WHOA");
-    // var data;
-    // var mangledName = this.closest("tr").attr('id');
-    // if(this.hasClass("thumbsUp")){
-    //     data = {upvote: "true", eventname: mangledName.slice(1, mangledName.length)};
-    // }
-    // else{
-    //     data = {eventname: mangledName.slice(1, mangledName.length)};
-    // }
-    // console.log(data);
-    //$.post( "incrementvote.php", data);
-  });
 });
