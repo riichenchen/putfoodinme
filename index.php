@@ -56,15 +56,15 @@
                 animation: google.maps.Animation.BOUNCE,
                 draggable: true
             });
-            var myInfowindow = new google.maps.InfoWindow({
-                content: "<p> Add food here </p>"
-            });
-            google.maps.event.addListener(myMarker, 'click', (function (marker) {
+            
+            google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
-                    myInfowindow.open(map, marker);
+                    var myInfowindow = new google.maps.InfoWindow();
+                    myInfowindow.setContent("<p> Add food here </p>");
+                    myInfowindow.open(map, myMarker);
                 }
             })(myMarker));
-            alert("About to do something stupid");
+            //alert("About to do something stupid");
             google.maps.event.addListener(map, 'click', function (event) {
                 //window.location.href = "http://localhost/EventAddForm.php?lat=" +event.latLng.lat()+ "&long=" + event.latLng.lng();
                 addMarkerToMap(event.latLng.lat(), event.latLng.lng());
@@ -136,7 +136,7 @@
             google.maps.event.addListener(marker, 'click', (function (marker) {
                 return function () {
                     infowindow.setContent("<h1>Marker</h1><br><p>"+
-                        marker.position.lat()+","+marker.position.lng()+description+"</p>");
+                        marker.position.lat()+", "+marker.position.lng()+"</p>");
                     infowindow.open(map, marker);
                 }
             })(marker));
