@@ -176,7 +176,7 @@ function search(){
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-$document.ready(function(){
+$("document").ready(function(){
   $(".vote").click(function(){
     alert("WHOA");
     // var data;
