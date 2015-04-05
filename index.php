@@ -108,7 +108,7 @@
                       tableRow +=  ((100.0 *  this.upvotes) / this.totalvotes).toString() + '%"></div></div></td>';
                       tableRow +=  "</tr>";
 
-                      $('table tr:last').after(tableRow);
+                      $('#FoodTable tr:last').after(tableRow);
                     });
                 });
 		}
@@ -211,7 +211,7 @@
         <div class="container">
             <div class="row">
              <h1>Free Food Near Me</h1> 
-                <table class="table">
+                <table class="table" id="FoodTable">
                   <tr>
                     <td><h5>EVENT</h5></td>
                     <td><h5>DISTANCE</h5></td>      
