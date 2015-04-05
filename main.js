@@ -178,24 +178,16 @@ function search(){
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-function incrementVote(upvote, name){
+$(".vote").click(function(){
   var data;
-  if(this.hasClass("upvote")){
-      data = {upvote: "true", eventname: name};
+  var mangledName = this.closest("tr").attr('id');
+  if(this.hasClass("thumbsUp")){
+      data = {upvote: "true", eventname: mangledName.slice(1, mangledName.length)};
   }
   else{
-      data = {eventname: name };
+      data = {eventname: mangledName.slice(1, mangledName.length)};
   }
+  console.log(data);
   alert("WHOA");
   //$.post( "incrementvote.php", data);
-}
-
-$(".thumbsUp").click(function(){
-  var mangledName = this.closest("tr").attr('id');
-  incrementVote(false, mangledName.slice(1, mangledName.length));
-});
-
-$(".thumbsDown").click(function(){
-  var mangledName = this.closest("tr").attr('id');
-  incrementVote(true, mangledName.slice(1, mangledName.length));
 });
