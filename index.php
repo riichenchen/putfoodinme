@@ -194,17 +194,15 @@
 <body>
     <div class="header">
         <div class="container">
-        <div class="row">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">Put Food In Me</a>
             </div>
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
+                <form class="navbar-right" role="search">
+                    <!-- <div class="form-group"> -->
                       <input type="text" class="search-query input-mysize" placeholder="Enter your address to put food in you now.">
                       <input type="submit" class="btn btn-default" value="Search">
-                    </div>
+                    <!-- </div> -->
                 </form>
-            </div>
             </div>
         </div>
 
@@ -230,7 +228,7 @@
                     <td><h5>NO FOOD Y?!</h5></td>
                   </tr>
                   <tr>
-                    <td>'Event #' Free Tacos</td>
+                    <td>Free Tacos</td>
                     <td>1.1 miles</td>      
                     <td>1:00 PM</td>
                     <td>
@@ -244,7 +242,7 @@
                     <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
                   <tr>
-                    <td>'Event #' Free Tacos</td>
+                    <td>Free Nachos</td>
                     <td>1.1 miles</td>      
                     <td>1:00 PM</td>
                     <td><div class="progress">
@@ -257,7 +255,7 @@
                     <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
                   <tr>
-                    <td>'Event #' Free Tacos</td>
+                    <td>Free Tacos</td>
                     <td>1.1 miles</td>      
                     <td>1:00 PM</td>
                     <td><div class="progress">
@@ -270,7 +268,7 @@
                     <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
                   <tr>
-                    <td>'Event #' Free Tacos</td>
+                    <td>Free Tacos</td>
                     <td>1.1 miles</td>      
                     <td>1:00 PM</td>
                     <td><div class="progress">

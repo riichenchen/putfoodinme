@@ -9,7 +9,10 @@ a, a:link, a:visited, a:hover, a:active {
 
 .header {
     background-color: #b75656;
-    padding: 10px 5px 10px 5px;
+    /*padding: 10px 5px 10px 5px;*/
+    padding: 10px 0 10px 0;
+}
+.header .navbar-right {
 }
 
 .input-mysize { 
@@ -41,6 +44,7 @@ a, a:link, a:visited, a:hover, a:active {
 .food-locations {
 	text-align: center;
 	padding: 10px 10px 10px 10px;
+	max-width: 100%;
 }
 
 .new-event {
