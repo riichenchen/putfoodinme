@@ -125,9 +125,7 @@
 			}
 			foodmarkers = [];
 			//Add new
-			$.post( "getEvents.php", 
-                {lat: latitude, long: longitude, height: height, width: width
-                }).done(function(data){
+			$.post( "getEvents.php").done(function(data){
                     var events = jQuery.parseJSON(data);
 					events.splice(0, 1);
                     jQuery.each(events, function() {
