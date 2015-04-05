@@ -203,6 +203,7 @@ function addEvent(){
         $("#description").val('');
         $(".error-message").html('');
         $("#events").html(data);
+        refreshFood();
     });
 }
 
