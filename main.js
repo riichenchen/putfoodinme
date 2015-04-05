@@ -88,7 +88,7 @@ function refreshFood() {
             jQuery.each(events, function() {
                 console.log(i++);
               addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
-              tableRow +=  '<tr id = "$' + this.eventname + '>'
+              tableRow +=  '<tr id = "$' + this.eventname + '>';
               tableRow +=  '<td><div class = "eventname">' + this.eventname + "</div></td>";
               tableRow +=  '<td><div class = "distance">' + distanceString(this.latitude, this.longitude) + "</div></td>";
               tableRow +=  '<td><div class = "lastvote">' + this.lastvote + "</div></td>";
