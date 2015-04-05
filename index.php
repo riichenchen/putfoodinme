@@ -16,6 +16,7 @@
 
         var map;
         var myMarker;
+		var myInfowindow;
         var myLat = 46.855141;
         var myLong = -96.8372664;
         var foodCount = 0;
@@ -43,25 +44,7 @@
             } else {   // Browser doesn't support Geolocation
                 handleNoGeolocation(false);
             }
-			//addMyMarker();
-			console.log("1");
-			myMarker = new google.maps.Marker({
-                position: new google.maps.LatLng(myLat, myLong),
-                map: map,
-                animation: google.maps.Animation.BOUNCE,
-                draggable: true
-            });
-            console.log("2");
-            google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
-                return function () {
-                    var myInfowindow = new google.maps.InfoWindow();
-                    myInfowindow.setContent("<p> Add food at (" + 
-                        myMarker.position.lat()+", "+myMarker.position.lng()+")</p>");
-                    myInfowindow.open(map, myMarker);
-                }
-            })(myMarker));
-			console.log("3");
-			
+			addMyMarker();
 			refreshFood();
         }
 		
@@ -94,7 +77,7 @@
             console.log("2");
             google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
-                    var myInfowindow = new google.maps.InfoWindow();
+                    myInfowindow = new google.maps.InfoWindow();
                     myInfowindow.setContent("<p> Add food at (" + 
                         myMarker.position.lat()+", "+myMarker.position.lng()+")</p>");
                     myInfowindow.open(map, myMarker);
