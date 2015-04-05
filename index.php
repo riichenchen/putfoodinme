@@ -173,7 +173,7 @@
         </div>
 
     <div class="map">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
             <!-- map of free food locations goes here -->
                 <div id="map-canvas">Stuff</div>
