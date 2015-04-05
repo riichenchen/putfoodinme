@@ -98,8 +98,8 @@ function refreshFood() {
                 tableRow +=  this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="';
                 tableRow +=  this.totalvotes.toString()+'" style="width: ';
                 tableRow +=  ((100.0 *  this.upvotes + 1) / (this.totalvotes)+1).toString() + '%"></div></div>';
-                tableRow += '<div class = "vote thumbsUp"></div>'
-                tableRow += '<div class = "vote thumbsDown"></div></td>'
+                tableRow += '<div class = "vote thumbsUp" onclick="incrementVote(true, "'+this.eventname;
+                tableRow += '")></div><div class = "vote thumbsDown" onclick="incrementVote(false, "'+this.eventname+'")></div></td>'
                 tableRow +=  "</tr>";
                 $('#FoodTable tr:last').after(tableRow);
                 tableRow = "";
@@ -219,6 +219,8 @@ function search(){
 google.maps.event.addDomListener(window, 'load', initialize);
 
 function incrementVote(upvote, name){
+  var mangledName = this.closest("tr").attr('id');
+  incrementVote(false, mangledName.slice(1, mangledName.length));
   alert("WHOA");
   var data;
   if(this.hasClass("upvote")){
@@ -251,8 +253,6 @@ function findAddress(){
 
 
 $(".thumbsUp").click(function(){
-  var mangledName = this.closest("tr").attr('id');
-  incrementVote(false, mangledName.slice(1, mangledName.length));
 });
 
 $(".thumbsDown").click(function(){
