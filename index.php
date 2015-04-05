@@ -111,7 +111,7 @@
         }
 		
 		function refreshFood() {
-			Clear old markers
+			//Clear old markers
 			for (var i = 0; i < foodmarkers.length; i++) {
 				foodmarkers[i].setMap(null);
 			}
