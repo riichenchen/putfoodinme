@@ -92,9 +92,14 @@
 			//Add new food locations
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
-					events.splice(0, 1);
+                    var html = 
+                    if(events.shift().noFood){
+                        $("div.food-locations div.container").replaceWith(
+                            "<h5>No Free Food :(</h5>But You Can Change That :)");
+                    }
                     jQuery.each(events, function() {
                       addMarkerToMap(this.latitude, this.longitude, this.name, this.description);
+
                     });
                 });
 		}
@@ -191,6 +196,11 @@
                     <td><h5>FOOD A PLENTY</h5></td>
                     <td><h5>NO FOOD Y?!</h5></td>
                   </tr>
+
+
+
+
+
                   <tr>
                     <td>'Event #' Free Tacos</td>
                     <td>1.1 miles</td>      
@@ -205,6 +215,10 @@
                     <td><img src="http://i59.tinypic.com/xszs6.png" height="20" width="20"></td>
                     <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
+
+
+
+
                   <tr>
                     <td>'Event #' Free Tacos</td>
                     <td>1.1 miles</td>      
