@@ -144,7 +144,8 @@
         }
 
 
-        function addEvent(){
+        $("form").submit(function(e){
+            e.preventDefault();
             if($("#event-name").val().length == 0 || $("#description").val().length == 0){
                 alert("This is reached");
                 $(".new-event").before('<div class="errorCode">Please Enter All Form Components</div>')
@@ -155,7 +156,7 @@
             }, function(data){
                 $("#events").html(data);
             });
-        }
+        });
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
