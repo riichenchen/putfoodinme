@@ -34,7 +34,7 @@ function initialize() {
 	refreshFood();
 	
 	google.maps.event.addListener(map, 'bounds_changed', function(event){
-		if(map.getBounds().contains(myMarker.position){
+		if(map.getBounds().contains(myMarker.position)){
 			myMarker.setAnimation(google.maps.Animation.BOUNCE);
 		}
 	});
