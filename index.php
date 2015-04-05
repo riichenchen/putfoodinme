@@ -117,7 +117,7 @@
             //and places the marker on the map
             google.maps.event.addListener(marker, 'click', (function (marker) {
                 return function () {
-                    infowindow.setContent("<h1>"+name+"</h1><br><p>"+description+"</p><br><p>"+
+                    infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
                         marker.position.lat()+", "+marker.position.lng()+"</p>");
                     infowindow.open(map, marker);
                 }
