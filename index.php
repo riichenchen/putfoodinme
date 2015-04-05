@@ -46,14 +46,6 @@
             }
 			addMyMarker();
 			refreshFood();
-			
-			console.log(foodmarkers);
-			for(i = 0; i<foodmarkers.length; i++){
-				foodmarkers[i].setMap(map);
-			}
-			//google.maps.event.addListener(map, 'click', function (event) {
-            //    addMarkerToMap(event.latLng.lat(), event.latLng.lng());
-            //});
         }
 		
         function handleNoGeolocation(errorFlag) {
@@ -62,8 +54,6 @@
             } else {
                 var content = 'Error: Your browser doesn\'t support geolocation.';
             }
-			myLat = 46.855141;
-			myLong = -96.8372664;
             var options = {
                 map: map,
                 position: new google.maps.LatLng(myLat, myLong),
@@ -85,61 +75,40 @@
             google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
                     myInfowindow = new google.maps.InfoWindow();
-                    myInfowindow.setContent("<p> Add food at (" + 
-                        myMarker.position.lat()+", "+myMarker.position.lng()+")</p>");
+                    myInfowindow.setContent("<p> Drag to change your position </p><br><p> Use form below to add food event here.</p>");
                     myInfowindow.open(map, myMarker);
                 }
             })(myMarker));
 		}
 		
-        function getFoodLocations(latitude, longitude) {
-            var spherical = google.maps.geometry.spherical, 
-            bounds = map.getBounds(), 
-            cor1 = bounds.getNorthEast(), 
-            cor2 = bounds.getSouthWest(), 
-            cor3 = new google.maps.LatLng(cor2.lat(), cor1.lng()), 
-            cor4 = new google.maps.LatLng(cor1.lat(), cor2.lng()), 
-            width = spherical.computeDistanceBetween(cor1,cor3), 
-            height = spherical.computeDistanceBetween( cor1, cor4);
-            $.post( "getEvents.php", 
-                {lat: latitude, long: longitude, height: height, width: width
-                }).done(function(data){
-                    var events = jQuery.parseJSON(data);
-                    jQuery.each(events, function() {
-                      addMarkerToMap(this.lat, this.long, this.name, this.description);
-                    });
-                    var infowindow = new google.maps.InfoWindow();
-                });
-        }
 		
 		function refreshFood() {
 			//Clear old markers
 			for (var i = 0; i < foodmarkers.length; i++) {
-				foodmarkers[i].setMap(null);
+				window.foodmarkers[i].setMap(null);
 			}
-			foodmarkers = [];
+			window.foodmarkers = [];
+			
 			//Add new food locations
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
-					events.splice(0, 1);
+                    var html = "";
+                    if(events.shift().noFood){
+                        $("div.food-locations div.container").replaceWith(
+                            "<h5>No Free Food :(</h5>But You Can Change That :)");
+                    }
                     jQuery.each(events, function() {
-					  console.log("yo");
-                      addMarkerToMap(this.lat, this.long, this.name, this.description);
+                      addMarkerToMap(this.latitude, this.longitude, this.name, this.description);
+
                     });
                 });
-				
-			google.maps.event.addListener(map, 'click', function (event) {
-                addMarkerToMap(event.latLng.lat(), event.latLng.lng());
-            });
 		}
-
 
         //This function will add a marker to the map each time it
         //is called.  It takes latitude, longitude, and html markup
         //for the content you want to appear in the info window
         //for the marker.
         function addMarkerToMap(lat, long, name, description) {
-			console.log("1");
             var infowindow = new google.maps.InfoWindow();
             var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
@@ -148,19 +117,17 @@
 				visible: true,
                 animation: google.maps.Animation.DROP
             });
-			console.log("2");
-			foodmarkers.push(marker);
+
             //Creates the event listener for clicking the marker
             //and places the marker on the map
-            google.maps.event.addListener(foodmarkers[foodmarkers.length-1], 'click', (function (marker) {
+            google.maps.event.addListener(marker, 'click', (function (marker) {
                 return function () {
-                    infowindow.setContent("<h1>"+name+"</h1><br><p>"+description+"</p><br><p>"+
+                    infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
                         marker.position.lat()+", "+marker.position.lng()+"</p>");
                     infowindow.open(map, marker);
                 }
-            })(foodmarkers[foodmarkers.length-1]));
-			
-			console.log("3");
+            })(marker));
+			var len = window.foodmarkers.push(marker);
         }
 
 
@@ -227,6 +194,11 @@
                     <td><h5>FOOD A PLENTY</h5></td>
                     <td><h5>NO FOOD Y?!</h5></td>
                   </tr>
+
+
+
+
+
                   <tr>
                     <td>Free Tacos</td>
                     <td>1.1 miles</td>      
@@ -241,6 +213,10 @@
                     <td><img src="http://i59.tinypic.com/xszs6.png" height="20" width="20"></td>
                     <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
+
+
+
+
                   <tr>
                     <td>Free Nachos</td>
                     <td>1.1 miles</td>      
