@@ -11,8 +11,8 @@ try{
     $stmt = $conn->prepare($sql_insert);
     $stmt->bindValue(1, $_POST["name"]);
     $stmt->bindValue(2, $_POST["description"]);
-    $stmt->bindValue(3, $_POST["lat"]);
-    $stmt->bindValue(4, $_POST["long"]);
+    $stmt->bindValue(3, floatval($_POST["lat"]));
+    $stmt->bindValue(4, floatval($_POST["long"]));
     $stmt->execute();
     $sql_select = "SELECT * FROM foodinfo";
 	$stmt = $conn->query($sql_select);
