@@ -85,8 +85,7 @@
             google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
                     myInfowindow = new google.maps.InfoWindow();
-                    myInfowindow.setContent("<p> Add food at (" + 
-                        myMarker.position.lat()+", "+myMarker.position.lng()+")</p>");
+                    myInfowindow.setContent("<p> Drag to change your position </p><br><p> Use form below to add food event here.</p>");
                     myInfowindow.open(map, myMarker);
                 }
             })(myMarker));
@@ -104,7 +103,6 @@
                     var events = JSON.parse(data);
 					events.splice(0, 1);
                     jQuery.each(events, function() {
-					  console.log("yo");
                       addMarkerToMap(this.lat, this.long, this.name, this.description);
                     });
                 });
@@ -116,7 +114,6 @@
         //for the content you want to appear in the info window
         //for the marker.
         function addMarkerToMap(lat, long, name, description) {
-			console.log("1");
             var infowindow = new google.maps.InfoWindow();
             var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
@@ -125,8 +122,7 @@
 				visible: true,
                 animation: google.maps.Animation.DROP
             });
-			console.log("2");
-
+			console.log("line 125: "+marker.position+","+marker.map);
             //Creates the event listener for clicking the marker
             //and places the marker on the map
             google.maps.event.addListener(marker, 'click', (function (marker) {
@@ -137,9 +133,8 @@
                 }
             })(marker));
 			var len = foodmarkers.push(marker);
-			console.log(len);
-			console.log(foodmarkers);
-			console.log("3");
+			console.log("Line 139:" + len);
+			console.log("Line 140:" + foodmarkers);
         }
 
 
