@@ -83,9 +83,10 @@ function refreshFood() {
                 $("div.food-locations div.container").replaceWith(
                     "<h5>No Free Food :(</h5>But You Can Change That :)");
             }
+                          console.log(events);
+
             jQuery.each(events, function() {
               addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
-
               console.log("This is reached");
               tableRow +=  "<tr>"
               tableRow +=  "<td>" + this.eventname + "</td>";
@@ -98,7 +99,6 @@ function refreshFood() {
               tableRow +=  "</tr>";
               console.log(tableRow);
               $('#FoodTable tr:last').after(tableRow);
-
             });
         });
 }
