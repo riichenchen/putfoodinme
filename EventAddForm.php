@@ -9,6 +9,7 @@
             {lat: Math.random(), long: Math.random(), name: $(".name").val(), description: $(".description").val()
             }, function(data){
             	$(".events").html(data);
+            	alert(data);
             });
 		}
 	</script>
