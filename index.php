@@ -51,9 +51,9 @@
 			for(i = 0; i<foodmarkers.length; i++){
 				foodmarkers[i].setMap(map);
 			}
-			//google.maps.event.addListener(map, 'click', function (event) {
-            //    addMarkerToMap(event.latLng.lat(), event.latLng.lng());
-            //});
+			google.maps.event.addListener(map, 'click', function (event) {
+                addMarkerToMap(event.latLng.lat(), event.latLng.lng());
+            });
         }
 		
         function handleNoGeolocation(errorFlag) {
@@ -92,25 +92,6 @@
             })(myMarker));
 		}
 		
-        function getFoodLocations(latitude, longitude) {
-            var spherical = google.maps.geometry.spherical, 
-            bounds = map.getBounds(), 
-            cor1 = bounds.getNorthEast(), 
-            cor2 = bounds.getSouthWest(), 
-            cor3 = new google.maps.LatLng(cor2.lat(), cor1.lng()), 
-            cor4 = new google.maps.LatLng(cor1.lat(), cor2.lng()), 
-            width = spherical.computeDistanceBetween(cor1,cor3), 
-            height = spherical.computeDistanceBetween( cor1, cor4);
-            $.post( "getEvents.php", 
-                {lat: latitude, long: longitude, height: height, width: width
-                }).done(function(data){
-                    var events = jQuery.parseJSON(data);
-                    jQuery.each(events, function() {
-                      addMarkerToMap(this.lat, this.long, this.name, this.description);
-                    });
-                    var infowindow = new google.maps.InfoWindow();
-                });
-        }
 		
 		function refreshFood() {
 			//Clear old markers
@@ -127,12 +108,7 @@
                       addMarkerToMap(this.lat, this.long, this.name, this.description);
                     });
                 });
-				
-			google.maps.event.addListener(map, 'click', function (event) {
-                addMarkerToMap(event.latLng.lat(), event.latLng.lng());
-            });
 		}
-
 
         //This function will add a marker to the map each time it
         //is called.  It takes latitude, longitude, and html markup
@@ -149,17 +125,18 @@
                 animation: google.maps.Animation.DROP
             });
 			console.log("2");
-			foodmarkers.push(marker);
+
             //Creates the event listener for clicking the marker
             //and places the marker on the map
-            google.maps.event.addListener(foodmarkers[foodmarkers.length-1], 'click', (function (marker) {
+            google.maps.event.addListener(marker, 'click', (function (marker) {
                 return function () {
                     infowindow.setContent("<h1>"+name+"</h1><br><p>"+description+"</p><br><p>"+
                         marker.position.lat()+", "+marker.position.lng()+"</p>");
                     infowindow.open(map, marker);
                 }
-            })(foodmarkers[foodmarkers.length-1]));
-			
+            })(marker));
+			foodmarkers.push(marker);
+			console.log(foodmarkers);
 			console.log("3");
         }
 
