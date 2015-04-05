@@ -102,6 +102,7 @@
                       console.log("This is reached");
                       tableRow +=  "<tr>"
                       tableRow +=  "<td>" + this.name + "</td>";
+                      tableRow +=  "<td>" + distanceString(this.latitude, this.longitude) + "</td>";
                       tableRow +=  "<td>" + this.lastvote + "</td>";
                       tableRow +=  '<td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="';
                       tableRow +=  this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="';
