@@ -24,7 +24,7 @@
 
         function initialize() {
             var mapOptions = {
-                zoom: 6
+                zoom: 15
             };
             map = new google.maps.Map(document.getElementById('map-canvas'),
               mapOptions);
@@ -37,7 +37,7 @@
                     myMarker.position = new google.maps.LatLng(myLat, myLong);
                     var pos = new google.maps.LatLng(myLat, myLong);
                     map.setCenter(pos);
-                    map.setZoom(16);
+                    map.setZoom(15);
                 }, function () {
                     handleNoGeolocation(true);
                 });
@@ -140,6 +140,19 @@
                 $("#events").html(data);
             });
         }
+		
+		function changeLocation(address) {
+			var geocoder = new google.maps.Geocoder();
+			geocoder.geocode( { 'address': address}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					map.setCenter(results[0].geometry.location);
+					map.setZoom(15);
+					myMarker.setPosition(results[0].geometry.location);
+				} else {
+					alert("Geocode was not successful for the following reason: " + status);
+				}
+			});
+		}
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
