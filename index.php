@@ -36,8 +36,7 @@
 
                     var infowindow = new google.maps.InfoWindow({
                         map: map,
-                        position: pos,
-                        content: 'Location found using HTML5.'
+                        position: pos
                     });
 
                     map.setCenter(pos);
@@ -144,19 +143,20 @@
         }
 
 
-        $("form").submit(function(e){
-            e.preventDefault();
+        function addEvent(){
             if($("#event-name").val().length == 0 || $("#description").val().length == 0){
-                alert("This is reached");
-                $(".new-event").before('<div class="errorCode">Please Enter All Form Components</div>')
-                return;
+                $(".error-message").html('Please Enter All Form Components');
+                return false;
             }
            $.post( "EventAdd.php", 
             {lat: Math.random(), long: Math.random(), name: $("#event-name").val(), description: $("#description").val()
             }, function(data){
+                $("#event-name").val('');
+                $("#description").val('');
+                $(".error-message").html('');
                 $("#events").html(data);
             });
-        });
+        }
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
@@ -261,7 +261,10 @@
         <div class="container">
             <h2> Create an Event </h2>
                 <div class="row">
-                    <form class="form-horizontal" role="form">
+                    <form id = "newEventForm" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class = "error-message"></div>
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-4" for="event-name">Event Name:</label>
                         <div class="col-sm-6 col-md-4">
@@ -271,15 +274,15 @@
                         <div class="form-group">
                             <label class="control-label col-md-4" for="description">Event Description:</label>
                         <div class="col-sm-6 col-md-4">          
-                            <textarea class="form-control description" id="description" placeholder="Type of food, what will be served, etc."></textarea>
+                            <textarea id="description" class="form-control description" placeholder="Type of food, what will be served, etc."></textarea>
                         </div>
                         </div>
                         <div class="form-group">        
-                        <div class="col-sm-6 col-md-offset-4">
-                            <button class="btn btn-default">Submit</button>
-                        </div>
                         </div>
                     </form>
+                    <div class="col-sm-6 col-md-offset-4">
+                        <button class="btn btn-default" onclick = "addEvent()">Submit</button>
+                    </div>
                 </div>
         </div>
     </div>
