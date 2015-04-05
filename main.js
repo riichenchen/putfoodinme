@@ -67,6 +67,8 @@ function addMyMarker() {
             myInfowindow.open(map, myMarker);
         }
     })(myMarker));
+
+    google.maps.event.addListener(myMarker, 'dragend', refreshFood());
 }
 
 
@@ -231,6 +233,7 @@ function changeLocation(address) {
 			myMarker.setPosition(results[0].geometry.location);
       map.setZoom(14);
 			map.setZoom(15);
+      refreshFood();
 		} else {
 			alert("Address could not be found.");
 		}
