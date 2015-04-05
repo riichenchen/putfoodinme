@@ -92,21 +92,17 @@
 			//Add new food locations
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
-                    var table = "";
+                    var tableRow = "";
                     if(events.shift().noFood){
                         $("div.food-locations div.container").replaceWith(
                             "<h5>No Free Food :(</h5>But You Can Change That :)");
                     }
                     jQuery.each(events, function() {
                       addMarkerToMap(this.latitude, this.longitude, this.name, this.description);
+                      tableRow +=  "<tr>"
+                      tableRow +=  "<td>" + this.name + "</td>";
 
-                      table += "<tr><td>" + this.name + 
-                        "</td><td>" + distanceString(this.latitude, this.longitude) +
-                        "</td><td>" + 
-                        '</td><td> <div class="progress">  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="'+
-                        this.upvotes.toString()+'" aria-valuemin="0" aria-valuemax="'+
-                        this.totalvotes.toString()+'" style="width: '+
-                        ((100.0 *  this.upvotes) /  this.totalvotes).toString() + '%"></div></div>';
+                      $('table tr:last').after(tableRow);
                     });
                 });
 		}
