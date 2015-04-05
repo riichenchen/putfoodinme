@@ -111,11 +111,11 @@
         }
 		
 		function refreshFood() {
-			//Clear old markers
-			//for (var i = 0; i < foodmarkers.length; i++) {
-			//	foodmarkers[i].setMap(null);
-			//}
-			//foodmarkers = [];
+			Clear old markers
+			for (var i = 0; i < foodmarkers.length; i++) {
+				foodmarkers[i].setMap(null);
+			}
+			foodmarkers = [];
 			//Add new food locations
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
@@ -125,6 +125,10 @@
                       addMarkerToMap(this.lat, this.long, this.name, this.description);
                     });
                 });
+				
+			//google.maps.event.addListener(map, 'click', function (event) {
+            //    addMarkerToMap(event.latLng.lat(), event.latLng.lng());
+            //});
 		}
 
 
@@ -133,7 +137,7 @@
         //for the content you want to appear in the info window
         //for the marker.
         function addMarkerToMap(lat, long, name, description) {
-			console.log("hi");
+			console.log("1");
             var infowindow = new google.maps.InfoWindow();
             var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
@@ -143,17 +147,19 @@
 				visible: true,
                 animation: google.maps.Animation.DROP
             });
-
+			console.log("2");
+			foodmarkers.push(marker);
             //Creates the event listener for clicking the marker
             //and places the marker on the map
-            google.maps.event.addListener(marker, 'click', (function (marker) {
+            google.maps.event.addListener(foodmarkers[foodmarkers.length-1], 'click', (function (marker) {
                 return function () {
                     infowindow.setContent("<h1>"+name+"</h1><br><p>"+description+"</p><br><p>"+
                         marker.position.lat()+", "+marker.position.lng()+"</p>");
                     infowindow.open(map, marker);
                 }
             })(marker));
-			foodmarkers.push(marker);
+			
+			console.log("3");
         }
 
 
