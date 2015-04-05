@@ -180,17 +180,18 @@
             </div>
         </div>
     </div>
-
-    <div class="food-locations">
+<div class="food-locations">
         <div class="container">
+            <div class="row">
              <h1>Free Food Near Me</h1> 
-                <div class="row">
                 <table class="table">
                   <tr>
                     <td><h5>EVENT</h5></td>
                     <td><h5>DISTANCE</h5></td>      
                     <td><h5>MOST RECENT FEEDING</h5></td>
                     <td class="bar"><h5>% OF HUNGRY FED</h5></td>
+                    <td><h5>FOOD A PLENTY</h5></td>
+                    <td><h5>NO FOOD Y?!</h5></td>
                   </tr>
                   <tr>
                     <td>'Event #' Free Tacos</td>
@@ -203,6 +204,8 @@
                             </div>
                         </div>
                     </td>
+                    <td>&#128077;</td>
+                    <td>&#128078;</td>
                   </tr>
                   <tr>
                     <td>'Event #' Free Tacos</td>
@@ -214,6 +217,8 @@
                             </div>
                         </div>
                     </td>
+                    <td>&#128077;</td>
+                    <td>&#128078;</td>
                   </tr>
                   <tr>
                     <td>'Event #' Free Tacos</td>
@@ -225,6 +230,8 @@
                             </div>
                         </div>
                     </td>
+                     <td>&#128077;</td>
+                     <td>&#128078;</td>
                   </tr>
                   <tr>
                     <td>'Event #' Free Tacos</td>
@@ -236,6 +243,8 @@
                             </div>
                         </div>
                     </td>
+                     <td>&#128077;</td>
+                     <td>&#128078;</td>
                   </tr>
                 </table>
             </div>
@@ -269,12 +278,11 @@
         </div>
     </div>
     
-    <div class="footer">
+<!--    <div class="footer">
         <div class="container">
             <div class="row">
             </div>
         </div>
-    </div>
+    </div> -->
 </body>
-
 </html>

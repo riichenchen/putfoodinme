@@ -9,7 +9,6 @@ a, a:link, a:visited, a:hover, a:active {
 
 .header {
     background-color: #b75656;
-    border-color: #E7E7E7;
     padding: 10px 5px 10px 5px;
 }
 
@@ -43,14 +42,6 @@ a, a:link, a:visited, a:hover, a:active {
 	text-align: center;
 	padding: 10px 10px 10px 10px;
 }
-/*
-.map {
-	background-image:url('http://www.interactually.com/wp-content/uploads/2013/05/old-google-maps-restaurants.jpg');
-	height: 500px;
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
-}*/
 
 .new-event {
 	background-image:url('http://www.pomodoropizza.ro/themes/pomodoro/img/bg/pizza1.jpg');
@@ -83,7 +74,3 @@ a, a:link, a:visited, a:hover, a:active {
 	position: relative;
 	margin: 0 auto;
 }
-
-/*table, tr, td {
-	border: 1px solid black;
-}*/
