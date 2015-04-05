@@ -107,9 +107,6 @@ function refreshFood() {
         tableRow = "";
      });
     } 
-    $(".vote").click(function(){
-      alert("WHOA");
-    });
   });
 }
 
