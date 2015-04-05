@@ -47,6 +47,10 @@
 			addMyMarker();
 			refreshFood();
 			
+			console.log(foodmarkers);
+			for(i = 0; i<foodmarkers.length; i++){
+				foodmarkers[i].setMap(map);
+			}
 			//google.maps.event.addListener(map, 'click', function (event) {
             //    addMarkerToMap(event.latLng.lat(), event.latLng.lng());
             //});
@@ -71,7 +75,6 @@
         }
 		
 		function addMyMarker() {
-			console.log(map);
 			myMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(myLat, myLong),
                 map: map,
@@ -79,7 +82,6 @@
                 animation: google.maps.Animation.BOUNCE,
                 draggable: true
             });
-			console.log(myMarker.position);
             google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
                     myInfowindow = new google.maps.InfoWindow();
@@ -126,9 +128,9 @@
                     });
                 });
 				
-			//google.maps.event.addListener(map, 'click', function (event) {
-            //    addMarkerToMap(event.latLng.lat(), event.latLng.lng());
-            //});
+			google.maps.event.addListener(map, 'click', function (event) {
+                addMarkerToMap(event.latLng.lat(), event.latLng.lng());
+            });
 		}
 
 
@@ -141,7 +143,6 @@
             var infowindow = new google.maps.InfoWindow();
             var myLatLng = new google.maps.LatLng(lat, long);
             var marker = new google.maps.Marker({
-                id: foodCount++,
                 position: myLatLng,
                 map: map,
 				visible: true,
@@ -157,7 +158,7 @@
                         marker.position.lat()+", "+marker.position.lng()+"</p>");
                     infowindow.open(map, marker);
                 }
-            })(marker));
+            })(foodmarkers[foodmarkers.length-1]));
 			
 			console.log("3");
         }
