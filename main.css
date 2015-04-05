@@ -1,0 +1,89 @@
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none !important;
+    color: black;
+}
+
+.header {
+    background-color: #b75656;
+    border-color: #E7E7E7;
+    padding: 10px 5px 10px 5px;
+}
+
+.input-mysize { 
+	width: 300px;
+    border-radius: 10px;
+    border: 1px #d3d3d3 solid;
+    padding: 5px 5px 5px 25px;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.btn {
+  background-color: #00B2EE;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border: 1px solid #0099CC;
+	color: #FFFFFF;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
+   color: #FFFFFF; 
+   background-color: #00B2EE; 
+   border-color: #0099CC; 
+}
+
+.food-locations {
+	text-align: center;
+	padding: 10px 10px 10px 10px;
+}
+
+.map {
+	background-image:url('http://www.interactually.com/wp-content/uploads/2013/05/old-google-maps-restaurants.jpg');
+	height: 500px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+.new-event {
+	background-image:url('http://www.pomodoropizza.ro/themes/pomodoro/img/bg/pizza1.jpg');
+	color: #FFFFFF;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 20px;
+	height: 500px;
+	padding: 50px 15px 10px 15px;
+}
+
+.new-event h2 {
+	text-transform: uppercase;
+	font-family: 'Cabin Condensed', sans-serif;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 0px 0px 20px 0px;
+}
+
+.food-locations h5 {
+	font-size: 15px;
+}
+
+.description {
+	max-width: 100%;
+	max-height: 150px;
+}
+
+.progress {
+	width: auto;
+	position: relative;
+	margin: 0 auto;
+}
+
+/*table, tr, td {
+	border: 1px solid black;
+}*/
