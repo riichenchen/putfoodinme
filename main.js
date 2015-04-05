@@ -65,7 +65,9 @@ function addMyMarker() {
         return function () {
             myInfowindow = new google.maps.InfoWindow();
             myInfowindow.setContent("<p> Drag to change your position </p><br><p> Use form below to add food event here.</p>");
-            myInfowindow.open(map, myMarker);
+            if (myInfowindow.map !== null || typeof map === "undefined"){
+              myInfowindow.open(map, myMarker);
+            }
         }
     })(myMarker));
 }
