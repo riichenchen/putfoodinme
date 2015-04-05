@@ -234,13 +234,12 @@ function changeLocation(address) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			map.setCenter(results[0].geometry.location);
 			myMarker.setPosition(results[0].geometry.location);
+      map.setZoom(14);
 			map.setZoom(15);
 		} else {
 			alert("Address could not be found");
 		}
-    myMarker.setAnimation(google.maps.Animation.BOUNCE);
 	});
-  myMarker.setAnimation(google.maps.Animation.BOUNCE);
 }
 function findAddress(){
     var query = $("#search-bar").val();
