@@ -93,7 +93,7 @@
 			$.post("getEvents.php", function(data){
                     var events = JSON.parse(data);
                     var table = "";
-                    if(true){
+                    if(events.shift().noFood){
                         $("div.food-locations div.container").replaceWith(
                             "<h5>No Free Food :(</h5>But You Can Change That :)");
                     }
