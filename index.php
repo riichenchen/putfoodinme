@@ -19,6 +19,7 @@
         var myLat = 46.855141;
         var myLong = -96.8372664;
         var foodCount = 0;
+		var foodmarkers = [];
 
         function initialize() {
             var mapOptions = {
@@ -45,8 +46,7 @@
                 }, function () {
                     handleNoGeolocation(true);
                 });
-            } else {
-                // Browser doesn't support Geolocation
+            } else {   // Browser doesn't support Geolocation
                 handleNoGeolocation(false);
             }
 
@@ -79,6 +79,7 @@
                 });
             });
 			*/
+			refreshFood();
         }
 
         function handleNoGeolocation(errorFlag) {
@@ -116,6 +117,24 @@
                     var infowindow = new google.maps.InfoWindow();
                 });
         }
+		
+		function refreshFood() {
+			//Clear old markers
+			for (var i = 0; i < foodmarkers.length; i++) {
+				foodmarkers[i].setMap(null);
+			}
+			foodmarkers = [];
+			//Add new
+			$.post( "getEvents.php", 
+                {lat: latitude, long: longitude, height: height, width: width
+                }).done(function(data){
+                    var events = jQuery.parseJSON(data);
+					events.splice(0, 1);
+                    jQuery.each(events, function() {
+                      addMarkerToMap(this.lat, this.long, this.name, this.description);
+                    });
+                });
+		}
 
 
         //This function will add a marker to the map each time it
@@ -137,11 +156,12 @@
             //and places the marker on the map
             google.maps.event.addListener(marker, 'click', (function (marker) {
                 return function () {
-                    infowindow.setContent("<h1>Marker</h1><br><p>"+
+                    infowindow.setContent("<h1>"+name+"</h1><br><p>"+description+"</p><br><p>"+
                         marker.position.lat()+", "+marker.position.lng()+"</p>");
                     infowindow.open(map, marker);
                 }
             })(marker));
+			foodmarkers.push(marker);
         }
 
 
