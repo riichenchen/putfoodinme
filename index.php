@@ -145,9 +145,138 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+
+    <meta content='width=device-width, intial-scale=1.0, user-scalable=no' name='viewport'>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cabin+Condensed:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="main.css">
+
   </head>
-  <body>
+<!--   <body>
   <div id="map-canvas">Stuff</div>
   <?php echo "stuff"; ?>
-  </body>
+  </body> -->
+<body>
+    <div class="header">
+        <div class="container">
+        <div class="row">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Put Food In Me</a>
+            </div>
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                      <input type="text" class="search-query input-mysize" placeholder="Enter your address to put food in you now.">
+                      <input type="submit" class="btn btn-default" value="Search">
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+
+    <div class="map">
+        <div class="container">
+            <div class="row">
+            <!-- map of free food locations goes here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="food-locations">
+        <div class="container">
+             <h1>Free Food Near Me</h1> 
+                <div class="row">
+                <table class="table">
+                  <tr>
+                    <td><h5>EVENT</h5></td>
+                    <td><h5>DISTANCE</h5></td>      
+                    <td><h5>MOST RECENT FEEDING</h5></td>
+                    <td class="bar"><h5>% OF HUNGRY FED</h5></td>
+                  </tr>
+                  <tr>
+                    <td>'Event #' Free Tacos</td>
+                    <td>1.1 miles</td>      
+                    <td>1:00 PM</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                            <span class="sr-only">80% Complete (success)</span>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>'Event #' Free Tacos</td>
+                    <td>1.1 miles</td>      
+                    <td>1:00 PM</td>
+                    <td><div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <span class="sr-only">40% Complete (success)</span>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>'Event #' Free Tacos</td>
+                    <td>1.1 miles</td>      
+                    <td>1:00 PM</td>
+                    <td><div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                            <span class="sr-only">60% Complete (success)</span>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>'Event #' Free Tacos</td>
+                    <td>1.1 miles</td>      
+                    <td>1:00 PM</td>
+                    <td><div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                            <span class="sr-only">20% Complete (success)</span>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="new-event">
+        <div class="container">
+            <h2> Create an Event </h2>
+                <div class="row">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="event-name">Event Name:</label>
+                        <div class="col-sm-6 col-md-4">
+                            <input type="event-name" class="form-control" id="event-name" placeholder="Enter event name">
+                        </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="description">Event Description:</label>
+                        <div class="col-sm-6 col-md-4">          
+                            <textarea class="form-control description" placeholder="Type of food, what will be served, etc."></textarea>
+                        </div>
+                        </div>
+                        <div class="form-group">        
+                        <div class="col-sm-6 col-md-offset-4">
+                            <input type="submit" class="btn btn-default" value="Submit">
+                        </div>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+</body>
+  
 </html>
