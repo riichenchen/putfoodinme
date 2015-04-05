@@ -115,7 +115,7 @@ function distanceString(lat1, lng1){
 	var dlat = lat2 - lat1;
 	var dlng = lng2 - lng1;
 	var a = Math.sin(dlat/2) * Math.sin(dlat/2) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dlng/2) * Math.sin(dlng/2);
-	var c = Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 	var distance = c * 3961;
   
 	//Distance in miles
