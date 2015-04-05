@@ -67,14 +67,13 @@
         }
 		
 		function addMyMarker() {
-			console.log("1");
+			console.log(map);
 			myMarker = new google.maps.Marker({
                 position: new google.maps.LatLng(myLat, myLong),
                 map: map,
                 animation: google.maps.Animation.BOUNCE,
                 draggable: true
             });
-            console.log("2");
             google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
                     myInfowindow = new google.maps.InfoWindow();
@@ -83,7 +82,6 @@
                     myInfowindow.open(map, myMarker);
                 }
             })(myMarker));
-			console.log("3");
 		}
 		
         function getFoodLocations(latitude, longitude) {
