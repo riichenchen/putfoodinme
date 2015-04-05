@@ -124,8 +124,8 @@
 				foodmarkers[i].setMap(null);
 			}
 			foodmarkers = [];
-			//Add new
-			$.post( "getEvents.php").done(function(data){
+			//Add new food locations
+			$.post("getEvents.php", function(data){
                     var events = jQuery.parseJSON(data);
 					events.splice(0, 1);
                     jQuery.each(events, function() {
