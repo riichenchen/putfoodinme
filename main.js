@@ -235,12 +235,12 @@ function changeLocation(address) {
 			map.setCenter(results[0].geometry.location);
 			myMarker.setPosition(results[0].geometry.location);
 			map.setZoom(15);
-			myMarker.setAnimation(null);
-			myMarker.setAnimation(google.maps.Animation.BOUNCE);
 		} else {
-			alert("Geocode was not successful for the following reason: " + status);
+			alert("Address could not be found");
 		}
+    myMarker.setAnimation(google.maps.Animation.BOUNCE);
 	});
+  myMarker.setAnimation(google.maps.Animation.BOUNCE);
 }
 function findAddress(){
     var query = $("#search-bar").val();
