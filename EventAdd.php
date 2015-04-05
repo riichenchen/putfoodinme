@@ -11,10 +11,10 @@ try{
     $sql_insert = "INSERT INTO foodinfo (name, description, LocationX, LocationY) 
                    VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql_insert);
-    $stmt->bindValue(1, "Person");
-    $stmt->bindValue(2, "Person");
-    $stmt->bindValue(3, 10);
-    $stmt->bindValue(4, 10);
+    $stmt->bindValue(1, "Hello");
+    $stmt->bindValue(2, "World");
+    $stmt->bindValue(3, 20);
+    $stmt->bindValue(4, 15);
     $stmt->execute();
     $sql_select = "SELECT * FROM foodinfo";
 	$stmt = $conn->query($sql_select);
