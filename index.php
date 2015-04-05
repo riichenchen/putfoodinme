@@ -134,12 +134,12 @@
             //and places the marker on the map
             google.maps.event.addListener(marker, 'click', (function (marker) {
                 return function () {
-                    infowindow.setContent("<h1>name</h1><br><p>"+description+"</p>");
+                    infowindow.setContent("<h1>Marker</h1><br><p>"+
+                        marker.position.lat()+","+marker.position.lng()+description+"</p>");
                     infowindow.open(map, marker);
                 }
             })(marker));
         }
-
 
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
