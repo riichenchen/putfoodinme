@@ -3,14 +3,12 @@ var myMarker;
 var myInfowindow;
 var myLat = 46.855141;
 var myLong = -96.8372664;
-var foodCount = 0;
 var foodmarkers = [];
 var geocoder = new google.maps.Geocoder();
 
-
 function initialize() {
     var mapOptions = {
-        zoom: 6
+        zoom: 15
     };
     map = new google.maps.Map(document.getElementById('map-canvas'),
       mapOptions);
@@ -23,7 +21,7 @@ function initialize() {
             myMarker.position = new google.maps.LatLng(myLat, myLong);
             var pos = new google.maps.LatLng(myLat, myLong);
             map.setCenter(pos);
-            map.setZoom(16);
+            map.setZoom(15);
         }, function () {
             handleNoGeolocation(true);
         });
@@ -32,12 +30,10 @@ function initialize() {
     }
 	addMyMarker();
 	refreshFood();
-	
-	//console.log("Geocode: "+ getAddress(34.062928, -118.272561));
-	//changeLocation("2862 Mangin Crescent, Windsor, ON, Canada");
 }
 
 function handleNoGeolocation(errorFlag) {
+  //When finding current location fails, set to default.
     if (errorFlag) {
         var content = 'Error: The Geolocation service failed.';
     } else {
@@ -54,6 +50,8 @@ function handleNoGeolocation(errorFlag) {
 }
 
 function addMyMarker() {
+  //Adds the bouncing marker that represents the user's 
+  //current locations. Draggable to adjust location.
 	myMarker = new google.maps.Marker({
         position: new google.maps.LatLng(myLat, myLong),
         map: map,
@@ -63,11 +61,10 @@ function addMyMarker() {
     });
     google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
         return function () {
+            myMarker.setAnimation(google.maps.Animation.BOUNCE);
             myInfowindow = new google.maps.InfoWindow();
             myInfowindow.setContent("<p> Drag to change your position </p><br><p> Use form below to add food event here.</p>");
-            if (myInfowindow.map === null || typeof map === "undefined"){
-              myInfowindow.open(map, myMarker);
-            }
+            myInfowindow.open(map, myMarker);
         }
     })(myMarker));
 }
@@ -91,6 +88,7 @@ function refreshFood() {
             }
             else{
               jQuery.each(events, function() {
+                //Add the marker and update the food list.
                 addMarkerToMap(this.latitude, this.longitude, this.eventname, this.description);
                 tableRow +=  '<tr id = "$' + this.eventname + '">';
                 tableRow +=  '<td><div class = "eventname">' + this.eventname + "</div></td>";
@@ -109,7 +107,10 @@ function refreshFood() {
             } 
         });
 }
+
 function distanceString(lat1, lng1){
+  //Coordinates to miles via haversine formula. Returns
+  //as the crow flies distance.
 	lat1 *= Math.PI/180;
 	lng1 *= Math.PI/180;
 	var lng2 = myMarker.position.lng() * Math.PI/180;
@@ -121,7 +122,6 @@ function distanceString(lat1, lng1){
 	var distance = c * 3961;
   
 	//Distance in miles
-	//var distance = 3959 * Math.hypot(dlat, (myMarker.position.lng() - longitude) * Math.cos(dlat / 2));
 	if(distance < 1){
 		//Convert distance to feet
 		distance = distance * 5280;
@@ -134,6 +134,7 @@ function distanceString(lat1, lng1){
 	}
 	return distance;
 }
+
 //This function will add a marker to the map each time it
 //is called.  It takes latitude, longitude, and html markup
 //for the content you want to appear in the info window
@@ -150,15 +151,15 @@ function addMarkerToMap(lat, long, name, description) {
         animation: google.maps.Animation.DROP
     });
 
-    //Creates the event listener for clicking the marker
-    //and places the marker on the map
-	
-	
+
+    //Creates the event listener, and its relevant window for 
+    //clicking the marker and places the marker on the map.
 	var infowindow = new google.maps.InfoWindow({
 		maxWidth: 150,
 		content: "<h3>"+name+"</h3><p>"+description+"</p><p>"+
 				 "("+marker.position.lat()+", "+ marker.position.lng()+")</p>"
 	});
+  //Find an address to print. If none exists print coordinates.
 	geocoder.geocode({'latLng': myLatLng}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			if (results[0]) {
@@ -181,14 +182,6 @@ function addMarkerToMap(lat, long, name, description) {
 			infowindow.open(map, marker);
 		}
 	})(marker));	
-	
- //   google.maps.event.addListener(marker, 'click', (function (marker) {
- //       return function () {
- //           infowindow.setContent("<h3>"+name+"</h3><p>"+description+"</p><p>"+
- //               getAddress(marker.position.lat(), marker.position.lng())+"</p>");
- //           infowindow.open(map, marker);
- //       }
- //   })(marker));
  	var len = window.foodmarkers.push(marker);
 }
 
@@ -239,7 +232,7 @@ function changeLocation(address) {
       map.setZoom(14);
 			map.setZoom(15);
 		} else {
-			alert("Address could not be found");
+			alert("Address could not be found.");
 		}
 	});
 }
