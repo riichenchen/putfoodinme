@@ -14,6 +14,8 @@ try{
     $stmt->bindValue(3, floatval($_POST["lat"]));
     $stmt->bindValue(4, floatval($_POST["long"]));
     $stmt->execute();
+    echo "<h1>name: ".$_POST["name"];
+    echo "<h1>name: ".$_POST["description"];
     $sql_select = "SELECT * FROM foodinfo";
 	$stmt = $conn->query($sql_select);
 	$foods = $stmt->fetchAll(); 
