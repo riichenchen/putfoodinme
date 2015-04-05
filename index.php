@@ -55,6 +55,62 @@
                     <td><h5>MOST RECENT FEEDING</h5></td>
                     <td class="bar"><h5>% OF HUNGRY FED</h5></td>
                   </tr>
+
+                  <tr>
+                    <td>'Event #' Free Tacos</td>
+                    <td>1.1 miles</td>      
+                    <td>1:00 PM</td>
+                    <td>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                            <span class="sr-only">80% Complete (success)</span>
+                            </div>
+                        </div>
+                    <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                    <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>'Event #' Free Tacos</td>
+                    <td>1.1 miles</td>      
+                    <td>1:00 PM</td>
+                    <td><div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                            <span class="sr-only">40% Complete (success)</span>
+                            </div>
+                        </div>
+                    <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                    <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>'Event #' Free Tacos</td>
+                    <td>1.1 miles</td>      
+                    <td>1:00 PM</td>
+                    <td><div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                            <span class="sr-only">60% Complete (success)</span>
+                            </div>
+                        </div>
+                    <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                    <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>'Event #' Free Tacos</td>
+                    <td>1.1 miles</td>      
+                    <td>1:00 PM</td>
+                    <td><div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                            <span class="sr-only">20% Complete (success)</span>
+                            </div>
+                        </div>
+                    <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                    <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
+                    </td>
+                  </tr>
                 </table>
             </div>
         </div>
