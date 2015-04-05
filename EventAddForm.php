@@ -5,11 +5,6 @@
     <script type="text/javascript">google.load("jquery", "1.3.2");</script>
 	<script type="text/javascript">
 		function submitForm(){
-		   $.post( "EventAdd.php", 
-            {lat: Math.random(), long: Math.random(), name: $(".name").val(), description: $(".description").val()
-            }).done(function(data){
-            	alert(data);
-            });
 		}
 	</script>
 </head>
@@ -22,11 +17,9 @@ $int is time of cookie expires*/
 ?>
 
 
-<form id = "event">
-	Name of Event: <input type="text" name="name"><br>
-	Event Description: <input type="text" name="description"><br>
-	<button onclick="submitForm()">Submit</button>
-</form>
+Name of Event: <input type="text" name="name"><br>
+Event Description: <input type="text" name="description"><br>
+<button onclick="submitForm()">Submit</button>
 <div id = "table">
 </div>
 
