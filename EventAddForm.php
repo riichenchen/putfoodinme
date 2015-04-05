@@ -13,6 +13,7 @@
             	alert(data);
             });
 		}
+        $("events").text("Stuff");
 	</script>
 </head>
 <body>
