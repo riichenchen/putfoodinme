@@ -33,7 +33,7 @@
 
                 <form class="navbar-right" role="search">
                       <input type="text" class="search-query input-mysize" placeholder="Enter your address to put food in you now.">
-                      <input type="submit" class="btn btn-default" value="Search">
+                      <button type="button" class="btn btn-default" id="search">
                 </form>
             </div>
             </div>
