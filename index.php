@@ -179,7 +179,7 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Cabin+Condensed:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="main.css">
 
   </head>
@@ -217,13 +217,7 @@
                     <td><h5>DISTANCE</h5></td>      
                     <td><h5>MOST RECENT FEEDING</h5></td>
                     <td class="bar"><h5>% OF HUNGRY FED</h5></td>
-                    <td><h5>FOOD A PLENTY</h5></td>
-                    <td><h5>NO FOOD Y?!</h5></td>
                   </tr>
-
-
-
-
 
                   <tr>
                     <td>Free Tacos</td>
@@ -235,13 +229,10 @@
                             <span class="sr-only">80% Complete (success)</span>
                             </div>
                         </div>
+                        <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                        <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
                     </td>
-                    <td><img src="http://i59.tinypic.com/xszs6.png" height="20" width="20"></td>
-                    <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
-
-
-
 
                   <tr>
                     <td>Free Nachos</td>
@@ -252,9 +243,9 @@
                             <span class="sr-only">40% Complete (success)</span>
                             </div>
                         </div>
+                        <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                        <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
                     </td>
-                    <td><img src="http://i59.tinypic.com/xszs6.png" height="20" width="20"></td>
-                    <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
                   <tr>
                     <td>Free Tacos</td>
@@ -265,9 +256,9 @@
                             <span class="sr-only">60% Complete (success)</span>
                             </div>
                         </div>
+                        <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                        <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
                     </td>
-                    <td><img src="http://i59.tinypic.com/xszs6.png" height="20" width="20"></td>
-                    <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
                   <tr>
                     <td>Free Tacos</td>
@@ -278,9 +269,9 @@
                             <span class="sr-only">20% Complete (success)</span>
                             </div>
                         </div>
+                        <img src="http://i59.tinypic.com/xszs6.png" height="20" width="20">
+                        <img src="http://i57.tinypic.com/o72gox.png" height="20" width="20">
                     </td>
-                    <td><img src="http://i59.tinypic.com/xszs6.png" height="20" width="20"></td>
-                     <td><img src="http://i57.tinypic.com/o72gox.png" height="20" width="20"></td>
                   </tr>
                 </table>
             </div>

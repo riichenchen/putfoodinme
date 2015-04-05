@@ -50,7 +50,7 @@ a, a:link, a:visited, a:hover, a:active {
 .new-event {
 	background-image:url('http://www.pomodoropizza.ro/themes/pomodoro/img/bg/pizza1.jpg');
 	color: #FFFFFF;
-	font-family: 'Source Sans Pro', sans-serif;
+  	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 20px;
 	height: 500px;
 	padding: 50px 15px 10px 15px;
@@ -58,7 +58,7 @@ a, a:link, a:visited, a:hover, a:active {
 
 .new-event h2 {
 	text-transform: uppercase;
-	font-family: 'Cabin Condensed', sans-serif;
+	font-family: 'Fjalla One', sans-serif;
 	color: #FFFFFF;
 	text-align: center;
 	padding: 0px 0px 20px 0px;
@@ -66,6 +66,11 @@ a, a:link, a:visited, a:hover, a:active {
 
 .food-locations h5 {
 	font-size: 15px;
+	font-family: 'Fjalla One', sans-serif;
+}
+
+.food-locations h1 {
+	font-family: 'Fjalla One', sans-serif;
 }
 
 .description {
