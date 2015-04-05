@@ -75,7 +75,7 @@
             google.maps.event.addListener(myMarker, 'click', (function (myMarker) {
                 return function () {
                     myInfowindow = new google.maps.InfoWindow();
-                    myInfowindow.setContent("<p> Drag to change your position </p><br><p> Use form below to add food event here.</p>");
+                    myInfowindow.setContent("<p> Drag to change your position </p><p> Use form below to add food event here.</p>");
                     myInfowindow.open(map, myMarker);
                 }
             })(myMarker));
@@ -105,6 +105,7 @@
 		}
 		
 		function getAddress(lat, lng) {
+			var geocoder = new google.maps.Geocoder();
 			var latlng = new google.maps.LatLng(lat, lng);
 			var address = "("+lat+", "+lng+")";;
 			geocoder.geocode({'latLng': latlng}, function(results, status) {
