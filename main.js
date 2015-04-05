@@ -30,6 +30,9 @@ function initialize() {
     }
 	addMyMarker();
 	refreshFood();
+	
+	config.log("Geocode: "+getAddress(34.062928, -118.272561));
+	changeLocation("2862 Mangin Crescent, Windsor, ON, Canada");
 }
 
 function handleNoGeolocation(errorFlag) {
@@ -132,7 +135,9 @@ function distanceString(lat1, lng1){
 //for the content you want to appear in the info window
 //for the marker.
 function addMarkerToMap(lat, long, name, description) {
-    var infowindow = new google.maps.InfoWindow();
+    var infowindow = new google.maps.InfoWindow({
+		maxWidth: 150
+	});
     var myLatLng = new google.maps.LatLng(lat, long);
     var marker = new google.maps.Marker({
         position: myLatLng,
@@ -186,6 +191,47 @@ function incrementVote(upvote, name){
   }
   alert("WHOA");
   //$.post( "incrementvote.php", data);
+}
+
+function getAddress(lat, lng) {
+	var geocoder = new google.maps.Geocoder();
+	var latlng = new google.maps.LatLng(lat, lng);
+	var address = "("+lat+", "+lng+")";;
+	geocoder.geocode({'latLng': latlng}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			console.log("Meep");
+			if (results[4]) {
+				console.log("There should be an address");
+				address = results[4].formatted_address;
+			}
+			if (results[3]) {
+				address = results[3].formatted_address;
+			}
+			if (results[2]) {
+				address = results[2].formatted_address;
+			}
+			if (results[1]) {
+				address = results[1].formatted_address;
+			}
+			if (results[0]) {
+				address = results[0].formatted_address;
+			}
+		} 
+	});
+	return address;
+}
+
+function changeLocation(address) {
+	var geocoder = new google.maps.Geocoder();
+	geocoder.geocode( { 'address': address}, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			map.setCenter(results[0].geometry.location);
+			map.setZoom(15);
+			myMarker.setPosition(results[0].geometry.location);
+		} else {
+			alert("Geocode was not successful for the following reason: " + status);
+		}
+	});
 }
 
 $(".thumbsUp").click(function(){
