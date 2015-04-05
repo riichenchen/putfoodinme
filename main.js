@@ -97,8 +97,8 @@ function refreshFood() {
               tableRow +=  this.totalvotes.toString()+'" style="width: ';
               tableRow +=  ((100.0 *  this.upvotes) / this.totalvotes).toString() + '%"></div></div></td>';
               tableRow +=  "</tr>";
-              console.log(tableRow);
               $('#FoodTable tr:last').after(tableRow);
+              tableRow = "";
             });
         });
 }
