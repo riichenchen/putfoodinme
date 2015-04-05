@@ -145,7 +145,7 @@
 
 
         function addEvent(){
-            if($("#event-name").val() === '' || $("#description").val() === ''){
+            if($("#event-name").val().length == 0 || $("#description").val().length == 0){
                 $(".new-event").before('<div class="errorCode">Please Enter All Form Components</div>')
                 return;
             }
